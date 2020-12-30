@@ -1,7 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ProjectItemTitle from "./ProjectItemTitle";
-import withArrayRenderer from "../../HoC/RenderArrayComponent"
+import withExistsRenderer from "../../HoC/RenderArrayComponent"
+
+interface TextProp
+{
+    text : string
+}
+
+type TextPropArray = Array<TextProp>;
+
 
 interface ProjectItemProps {
     link: string,
@@ -13,16 +20,20 @@ interface ProjectItemProps {
             height: number
         }
     },
-    title: [
-        { text: string }
-    ],
-    subtitle: [
-        { text: string }
-    ]
+    title: TextPropArray
+    subtitle : TextPropArray
 }
 
-const testItem = (data: [{text: string}]) => {
-    return <h1>{data[0].text}</h1>;
+const Subtitle = (input: TextPropArray ) => {
+    return <h2>{input[0].text}</h2>;
+}
+
+const Title = (input : TextPropArray) => {
+    return <h1>{input[0].text}</h1>
+}
+
+const Link = (input : String) => {
+    return <p>{input}</p>
 }
 
 
@@ -31,11 +42,15 @@ const ProjectItem = (data: ProjectItemProps) => {
         return null;
     }
 
+    // console.log("data", JSON.stringify(data))
+
     const { title, subtitle, link } = { ...data};
     const { url, dimensions } = { ...data.media};
 
+    const ProjectListItemSubtitle = withExistsRenderer(Subtitle);
+    const ProjectListItemTitle = withExistsRenderer(Title);
+    const ProjectListItemLink = withExistsRenderer(Link);
 
-const MyComponentWithLoading = withArrayRenderer(testItem);
 
       return(
           <li className="project-listitem">
@@ -43,19 +58,14 @@ const MyComponentWithLoading = withArrayRenderer(testItem);
                 className="project-listitem__media" 
                 style={{backgroundImage: "url(" + url + ")"}}></div>
                 <div className="project-listitem__content">
-                    {/* {title.length && (
-                        <h3>{title[0].text}</h3>
-                    )}
-                    
-                    <h4>{subtitle[0].text}</h4>
-                    <Link to={link}>Hallo</Link> */}
-                    {/* <RenderArrayComponent data={title}/> */}
-                    { <MyComponentWithLoading data={subtitle}/> }
-                    {/* <ProjectItemTitle data={title} /> */}
+                    { <ProjectListItemTitle {...title}/> }
+                    { <ProjectListItemSubtitle {...subtitle}/> }
+                    {/* { <ProjectListItemLink {link} /> } */}
                 </div>
           </li>
       )
 }
-
+// { [ myVar : P ] }
+// P[] 
 export type { ProjectItemProps };
 export { ProjectItem };

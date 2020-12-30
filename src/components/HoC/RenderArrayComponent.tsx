@@ -1,26 +1,15 @@
 import React from 'react';
 
-// First we need to add a type to let us extend the incoming component.
-interface RenderArrayComponentProps {
-    data: [
-        {
-            text: string
+const withExistsRenderer = <T extends object>( WrappedComponent: React.FC<T> ): React.FC<T> => 
+    ( props : T ) => 
+    {
+        //console.log(props)
+        if(Object.keys(props).length !== 0) {
+            return <WrappedComponent {...props as T } />;
         }
-    ]
-};
+        else {
+            return null;
+        }
+    }
 
-type RCT<P> = React.ComponentType<P>;
-type RAD = RenderArrayComponentProps;
-
-const withArrayRenderer = <P extends object>( Component: RCT<P> ): React.FC<P & RAD> => ({
-    data, ...props } : 
-    RenderArrayComponentProps) => {
-      if(data.length > 0) {
-          return <Component {...props as P} data={data} />;
-      }
-      else {
-          return <h1>Loading...</h1>
-      }
-  }
-
-export default withArrayRenderer;
+export default withExistsRenderer
