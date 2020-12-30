@@ -1,0 +1,19 @@
+@import "settings/reset";
+@import "settings/typography";
+@import "settings/mixins";
+@import "settings/variables";
+// @import "settings/icon";
+@import "settings/colors";
+
+@import "animations/fade";
+@import "animations/textFade";
+
+@import "components/main";
+@import "components/project-list";
+// @import "components/page";
+// @import "components/header";
+// @import "components/footer";
+// @import "components/hero";
+// @import "components/list";
+// @import "components/media";
+// @import "components/cms-content";

@@ -1,0 +1,63 @@
+$breakpoints: (
+        ("mobile-sml", '(min-width: 350px)', 'ms'),
+        ("mobile-med", '(min-width: 450px)', 'mm'),
+        ("mobile-lrg", '(min-width: 550px)', 'ml'),
+        ("tablet-sml", '(min-width: 650px)', 'ts'),
+        ("tablet-med", '(min-width: 750px)', 'tm'),
+        ("tablet-lrg", '(min-width: 850px)', 'tl'),
+        ("desktop-sml", '(min-width: 1024px)', 'ds'),
+        ("desktop-med", '(min-width: 1280px)', 'dm'),
+        ("desktop-lrg", '(min-width: 1400px)', 'dl')
+) !default;
+
+@mixin media-query($mq) {
+
+    $breakpoint-found: false;
+    // Loop through the list of breakpoints we’ve provided in our settings file.
+    @each $breakpoint in $breakpoints {
+
+        // Grab the alias and the condition from their respective locations in
+        // the list.
+        $alias: nth($breakpoint, 1);
+        $condition: nth($breakpoint, 2);
+
+        // If the media query we’ve specified has an alias and a condition...
+        @if $mq == $alias and $condition {
+
+            // ...tell the mixin that we’ve found it...
+            $breakpoint-found: true;
+
+            // ...and spit it out here.
+            @media #{$condition} {
+                @content;
+            }
+
+        }
+
+    }
+    // If the user specifies a non-exitent alias, send them a warning.
+    @if $breakpoint-found == false {
+        @warn "Oops! Breakpoint ‘#{$mq}’ does not exist."
+    }
+}
+
+@mixin screenreader {
+    position: absolute;
+    overflow: hidden;
+    height: 1px;
+    width: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.screenreader {
+    @include screenreader;
+}
+
+/*
+    font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
+ */
+
+@mixin responsiveFont($fontSize) {
+    font-size: calc(#{$fontSize}px + ((#{$fontSize} * 2) - #{$fontSize}) * ((100vw - 300px) / (1440 - 300)));
+    line-height: calc(#{$fontSize}px + ((#{$fontSize} * 2) - #{$fontSize}) * ((100vw - 300px) / (1440 - 300)));
+}

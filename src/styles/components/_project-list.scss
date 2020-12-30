@@ -1,0 +1,16 @@
+.project-list {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.project-listitem {
+    flex: 0 0 50%;
+
+    &__media {
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 0;
+        padding-bottom: 380px;
+        border-radius: 5px;
+    }
+}

@@ -37,7 +37,7 @@ const Projects = () => {
     }
 
     return(
-        <ul>
+        <ul className="project-list">
             {projectListItems}
         </ul>
     )

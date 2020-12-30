@@ -1,0 +1,125 @@
+@mixin svg-common {
+	background-image: url("../images/icon-sprite-c769d155.svg");
+	background-repeat: no-repeat;
+}
+
+@mixin icon-external_link_pri {
+	@include svg-common;
+	background-position: 0 0;
+	width: 28px;
+	height: 28px;
+	text-indent: -9999em;
+}
+
+%icon-external_link_pri {
+	@include icon-external_link_pri;
+}
+
+@mixin icon-external_link_w {
+	@include svg-common;
+	background-position: 35% 0;
+	width: 28px;
+	height: 28px;
+	text-indent: -9999em;
+}
+
+%icon-external_link_w {
+	@include icon-external_link_w;
+}
+
+@mixin icon-github_b {
+	@include svg-common;
+	background-position: 0 59.57446808510638%;
+	width: 26px;
+	height: 26px;
+	text-indent: -9999em;
+}
+
+%icon-github_b {
+	@include icon-github_b;
+}
+
+@mixin icon-github_w {
+	@include svg-common;
+	background-position: 31.70731707317073% 59.57446808510638%;
+	width: 26px;
+	height: 26px;
+	text-indent: -9999em;
+}
+
+%icon-github_w {
+	@include icon-github_w;
+}
+
+@mixin icon-linkedin_b {
+	@include svg-common;
+	background-position: 68.29268292682927% 0;
+	width: 26px;
+	height: 26px;
+	text-indent: -9999em;
+}
+
+%icon-linkedin_b {
+	@include icon-linkedin_b;
+}
+
+@mixin icon-linkedin_w {
+	@include svg-common;
+	background-position: 68.29268292682927% 55.319148936170215%;
+	width: 26px;
+	height: 26px;
+	text-indent: -9999em;
+}
+
+%icon-linkedin_w {
+	@include icon-linkedin_w;
+}
+
+@mixin icon-mail_b {
+	@include svg-common;
+	background-position: 0 99.6309963099631%;
+	width: 26px;
+	height: 18.8px;
+	text-indent: -9999em;
+}
+
+%icon-mail_b {
+	@include icon-mail_b;
+}
+
+@mixin icon-mail_w {
+	@include svg-common;
+	background-position: 31.70731707317073% 99.6309963099631%;
+	width: 26px;
+	height: 18.8px;
+	text-indent: -9999em;
+}
+
+%icon-mail_w {
+	@include icon-mail_w;
+}
+
+@mixin icon-resume_b {
+	@include svg-common;
+	background-position: 100% 0;
+	width: 26px;
+	height: 26px;
+	text-indent: -9999em;
+}
+
+%icon-resume_b {
+	@include icon-resume_b;
+}
+
+@mixin icon-resume_w {
+	@include svg-common;
+	background-position: 100% 55.319148936170215%;
+	width: 26px;
+	height: 26px;
+	text-indent: -9999em;
+}
+
+%icon-resume_w {
+	@include icon-resume_w;
+}
+

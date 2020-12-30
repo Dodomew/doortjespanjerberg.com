@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "Roboto Regular";
+    src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+000-5FF; /* Download only latin glyphs */
+    src: local('Roboto Regular'),
+    url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url("../fonts/Roboto-Bold.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+000-5FF; /* Download only latin glyphs */
+    src: local('Roboto Bold'),
+    url("../fonts/Roboto-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins Black";
+    src: url("../fonts/Poppins-Black.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+000-5FF; /* Download only latin glyphs */
+    src: local('Poppins Black'),
+    url("../fonts/Poppins-Black.ttf") format("truetype");
+}
+
+@mixin font-pri-reg {
+    font-family: 'Roboto Regular', 'Helvetica Neue', sans-serif;
+}
+
+@mixin font-pri-bold {
+    font-family: 'Roboto Bold', 'Helvetica Neue', sans-serif;
+}
+
+@mixin font-sec-black {
+    font-family: 'Poppins Black', 'Helvetica Neue', sans-serif;
+}
