@@ -1,5 +1,8 @@
 import React from 'react';
-import withExistsRenderer from "../../HoC/RenderArrayComponent"
+import withObjectExistsRenderer from "../../HoC/withObjectExistsRenderer";
+import Title from "./Atoms/Title";
+import Subtitle from "./Atoms/Subtitle";
+import { Link } from 'react-router-dom';
 
 /*
     Prismic API sends a normal text input as follows:
@@ -19,15 +22,17 @@ import withExistsRenderer from "../../HoC/RenderArrayComponent"
 
     If it's all good, the HoC returns the original component and we can render it without doing extra checks
 */
+
 interface TextProp
 {
     text : string
 }
 
-type TextPropArray = Array<TextProp>;
+export type TextPropArray = Array<TextProp>;
 
 
 interface ProjectItemProps {
+    slug: string,
     link: string,
     media: {
         alt: string,
@@ -41,30 +46,19 @@ interface ProjectItemProps {
     subtitle : TextPropArray
 }
 
-const Subtitle = (input: TextPropArray ) => {
-    return <h2>{input[0].text}</h2>;
-}
-
-const Title = (input : TextPropArray) => {
-    return <h1>{input[0].text}</h1>
-}
-
-const Link = (input : String) => {
-    return <p>{input}</p>
-}
-
-
 const ProjectItem = (data: ProjectItemProps) => {
     if(!data) {
         return null;
     }
 
+    console.log(data)
+
     const { title, subtitle, link } = { ...data};
     const { url, dimensions } = { ...data.media};
 
-    const ProjectListItemSubtitle = withExistsRenderer(Subtitle);
-    const ProjectListItemTitle = withExistsRenderer(Title);
-    const ProjectListItemLink = withExistsRenderer(Link);
+    const ProjectListItemSubtitle = withObjectExistsRenderer(Subtitle);
+    const ProjectListItemTitle = withObjectExistsRenderer(Title);
+    // const ProjectListItemLink = withObjectExistsRenderer(Link);
 
 
       return(
@@ -76,11 +70,11 @@ const ProjectItem = (data: ProjectItemProps) => {
                     { <ProjectListItemTitle {...title}/> }
                     { <ProjectListItemSubtitle {...subtitle}/> }
                     {/* { <ProjectListItemLink {link} /> } */}
+                    <Link to={"projects/" + data.slug}>Link</Link>
                 </div>
           </li>
       )
 }
-// { [ myVar : P ] }
-// P[] 
+
 export type { ProjectItemProps };
 export { ProjectItem };

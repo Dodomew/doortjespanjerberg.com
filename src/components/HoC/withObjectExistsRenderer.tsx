@@ -10,7 +10,7 @@ import React from 'react';
     Usage is primarily for Titles and Subtitles
 */
 
-const withExistsRenderer = <T extends object>( WrappedComponent: React.FC<T> ): React.FC<T> => 
+const withObjectExistsRenderer = <T extends object>( WrappedComponent: React.FC<T> ): React.FC<T> => 
     ( props : T ) => 
     {
         if(Object.keys(props).length !== 0) {
@@ -21,4 +21,4 @@ const withExistsRenderer = <T extends object>( WrappedComponent: React.FC<T> ): 
         }
     }
 
-export default withExistsRenderer
+export default withObjectExistsRenderer

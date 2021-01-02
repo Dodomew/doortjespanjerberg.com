@@ -8,12 +8,6 @@ import {ProjectItemProps} from "./ProjectItem/ProjectItem";
 
 const Projects = () => {
     const [listData, setListData] = useState<ApiSearchResponse>();
-
-    useEffect(() => {
-        if(listData) {
-            console.log(listData)
-        }
-    })
     const queryOptions = { orderings: "[my.dialogue_page.date desc]" };
 
     client.query([
@@ -21,6 +15,7 @@ const Projects = () => {
         Prismic.Predicates.at('my.project_detail.parent', 'X-MM-RAAACAAoI6Q')
     ], queryOptions).then(res => {
         setListData(res);
+        console.log(res)
     });
 
     let projectListItems = null;
@@ -28,12 +23,16 @@ const Projects = () => {
     if(listData && listData.results.length > 0) {
         projectListItems = listData.results.map((item) => {
             if(item.data) {
+                const itemSlug = item.slugs[0];
                 const itemData = item.data as ProjectItemProps;
                 return (
-                    <ProjectItem key={item.id} {...itemData}/>
+                    <ProjectItem key={item.id} {...itemData} slug={itemSlug}/>
                 )
             }
         })
+    }
+    else {
+        projectListItems = <h1>Skeleton animation loading...</h1>
     }
 
     return(
