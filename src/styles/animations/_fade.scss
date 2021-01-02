@@ -1,17 +1,42 @@
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/*
+    enter: The element is entering the DOM
+    enter-active: The element is active in the DOM
+    exit-active: The element is being removed from the DOM
+    exit: The element is removed from the DOM
+*/
+
+.fade-enter {
     opacity: 0;
-  }
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+}
+
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
 }
