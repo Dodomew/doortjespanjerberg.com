@@ -1,0 +1,14 @@
+.header {
+    background-color: var(--primary-style-color);
+    padding: 10px 20px;
+
+    &__title {
+        @include responsiveFont(30px, 60px);
+        color: var(--secondary-font-color);
+    }
+
+    &__byline {
+        @include responsiveFont(24px, 48px);
+        color: var(--secondary-font-color);
+    }
+}
