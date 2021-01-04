@@ -1,4 +1,6 @@
-$pri : #EECA39;
-$sec: #363238;
-$ter: #F4F6F5;
-$qua: #8EABA5;
+:root {
+    --primary-style-color: hsl(16, 88%, 62%);
+    --secondary-style-color: hsl(201, 67%, 44%);
+    --primary-font-color: hsl(0, 0%, 5%);
+    --secondary-font-color: hsl(0, 0%, 95%);
+}
