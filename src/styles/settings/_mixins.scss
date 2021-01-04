@@ -1,43 +1,30 @@
-$breakpoints: (
-        ("mobile-sml", '(min-width: 350px)', 'ms'),
-        ("mobile-med", '(min-width: 450px)', 'mm'),
-        ("mobile-lrg", '(min-width: 550px)', 'ml'),
-        ("tablet-sml", '(min-width: 650px)', 'ts'),
-        ("tablet-med", '(min-width: 750px)', 'tm'),
-        ("tablet-lrg", '(min-width: 850px)', 'tl'),
-        ("desktop-sml", '(min-width: 1024px)', 'ds'),
-        ("desktop-med", '(min-width: 1280px)', 'dm'),
-        ("desktop-lrg", '(min-width: 1400px)', 'dl')
-) !default;
+// Small tablets (portrait view)
+$screen-t-min: 768px;
 
-@mixin media-query($mq) {
+// Tablets and small desktops
+$screen-ds-min: 1024px;
 
-    $breakpoint-found: false;
-    // Loop through the list of breakpoints we’ve provided in our settings file.
-    @each $breakpoint in $breakpoints {
+// Large tablets and desktops
+$screen-dl-min: 1280px;
 
-        // Grab the alias and the condition from their respective locations in
-        // the list.
-        $alias: nth($breakpoint, 1);
-        $condition: nth($breakpoint, 2);
-
-        // If the media query we’ve specified has an alias and a condition...
-        @if $mq == $alias and $condition {
-
-            // ...tell the mixin that we’ve found it...
-            $breakpoint-found: true;
-
-            // ...and spit it out here.
-            @media #{$condition} {
-                @content;
-            }
-
-        }
-
+// Medium devices
+@mixin tablet {
+    @media (min-width: #{$screen-t-min}) {
+        @content;
     }
-    // If the user specifies a non-exitent alias, send them a warning.
-    @if $breakpoint-found == false {
-        @warn "Oops! Breakpoint ‘#{$mq}’ does not exist."
+}
+
+// Large devices
+@mixin desktop-small {
+    @media (min-width: #{$screen-ds-min}) {
+        @content;
+    }
+}
+
+// Extra large devices
+@mixin desktop-large {
+    @media (min-width: #{$screen-dl-min}) {
+        @content;
     }
 }
 
@@ -53,11 +40,35 @@ $breakpoints: (
     @include screenreader;
 }
 
-/*
-    font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
- */
+//- Mixin: Fluid Type
+///
+/// Magic calc + vh to allow text to be fluid between minimum
+/// and maximum breakpoints.
+///
+/// @group typography
+/// @param {variable} $min-font-size [12px] - Minimum font size
+/// @param {variable} $max-font-size [24px] - Maximum font size
+/// @param {variable} $lower-range [420px] - Stop scaling font smaller at this screen resolution
+/// @param {variable} $upper-range [900px] - Stop scaling font larger at this screen resolution
+/// @example
+///   h1 {
+///     @include responsive-type(20px, 48px);
+///   }
+/// @site https://madebymike.com.au/writing/precise-control-responsive-typography/
 
-@mixin responsiveFont($fontSize) {
-    font-size: calc(#{$fontSize}px + ((#{$fontSize} * 2) - #{$fontSize}) * ((100vw - 300px) / (1440 - 300)));
-    line-height: calc(#{$fontSize}px + ((#{$fontSize} * 2) - #{$fontSize}) * ((100vw - 300px) / (1440 - 300)));
+@mixin responsiveFont($min-font-size: 16px, $max-font-size: 20px, $lower-range: 300px, $upper-range: 1280px) {
+    font-size: calc(
+        #{$min-font-size} + #{(
+                ($max-font-size / ($max-font-size * 0 + 1)) - ($min-font-size / ($min-font-size * 0 + 1))
+            )} * ((100vw - #{$lower-range}) / #{(
+                        ($upper-range / ($upper-range * 0 + 1)) - ($lower-range / ($lower-range * 0 + 1))
+                    )})
+    );
+
+    @media screen and (max-width: $lower-range) {
+        font-size: $min-font-size;
+    }
+    @media screen and (min-width: $upper-range) {
+        font-size: $max-font-size;
+    }
 }
