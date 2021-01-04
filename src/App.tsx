@@ -30,7 +30,7 @@ const App = () => {
 								key={location.key}
 								classNames="fade"
 								unmountOnExit
-								timeout={300}>
+								timeout={166}>
 								<div className="anim">
 									<Switch location={location}>
 										<Route exact path="/" component={Homepage} />
