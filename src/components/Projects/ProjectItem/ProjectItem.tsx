@@ -23,9 +23,8 @@ import { Link } from 'react-router-dom';
     If it's all good, the HoC returns the original component and we can render it without doing extra checks
 */
 
-interface TextProp
-{
-    text : string
+interface TextProp {
+    text: string
 }
 
 export type TextPropArray = Array<TextProp>;
@@ -43,37 +42,40 @@ interface ProjectItemProps {
         }
     },
     title: TextPropArray
-    subtitle : TextPropArray
+    subtitle: TextPropArray
 }
 
 const ProjectItem = (data: ProjectItemProps) => {
-    if(!data) {
+    if (!data) {
         return null;
     }
 
     console.log(data)
 
-    const { title, subtitle, link } = { ...data};
-    const { url, dimensions } = { ...data.media};
+    const { title, subtitle, link } = { ...data };
+    const { url, dimensions } = { ...data.media };
 
     const ProjectListItemSubtitle = withObjectExistsRenderer(Subtitle);
     const ProjectListItemTitle = withObjectExistsRenderer(Title);
     // const ProjectListItemLink = withObjectExistsRenderer(Link);
 
 
-      return(
-          <li className="project-listitem">
-              <div
-                className="project-listitem__media" 
-                style={{backgroundImage: "url(" + url + ")"}}></div>
-                <div className="project-listitem__content">
-                    { <ProjectListItemTitle {...title}/> }
-                    { <ProjectListItemSubtitle {...subtitle}/> }
-                    {/* { <ProjectListItemLink {link} /> } */}
-                    <Link to={"projects/" + data.slug}>Link</Link>
+    return (
+        <li className="project-listitem">
+            <div
+                className="project-listitem__media"
+                style={{ backgroundImage: "url(" + url + ")" }}></div>
+            <div className="project-listitem__content">
+                <div className="project-listitem__text">
+                    {<ProjectListItemTitle {...title} />}
+                    {<ProjectListItemSubtitle {...subtitle} />}
                 </div>
-          </li>
-      )
+                <Link to={"projects/" + data.slug} className="project-listitem__link">
+                    Link
+                </Link>
+            </div>
+        </li>
+    )
 }
 
 export type { ProjectItemProps };

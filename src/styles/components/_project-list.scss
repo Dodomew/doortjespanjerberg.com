@@ -4,13 +4,58 @@
 }
 
 .project-listitem {
-    flex: 0 0 50%;
+    flex: 1 0 100%;
+    margin-bottom: 60px;
+    position: relative;
+    border-radius: 5px;
+
+    &:hover {
+        cursor: pointer;
+
+        &::before {
+            clip-path: inset(0 0 0 0 round 5px);
+        }
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: #c5c5c5;
+        clip-path: inset(40px 0 20px 40px round 5px);
+        transition: clip-path 0.33s cubic-bezier(0.72, 0.13, 0.31, 0.96);
+        z-index: 0;
+        margin: -20px;
+    }
+
+    @include tablet {
+        flex: 0 0 calc(50% - 50px);
+
+        &:nth-child(odd) {
+            margin-right: 100px;
+        }
+    }
 
     &__media {
         background-size: cover;
         background-repeat: no-repeat;
         height: 0;
-        padding-bottom: 380px;
+        padding-bottom: 56.25%;
         border-radius: 5px;
+        position: relative;
+    }
+
+    &__content {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    &__link {
+        margin-left: auto;
+        margin-right: 10px;
     }
 }
