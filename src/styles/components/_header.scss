@@ -3,12 +3,12 @@
     padding: 10px 20px;
 
     &__title {
-        @include responsiveFont(30px, 60px);
+        @include responsiveSize("font-size", 30px, 60px, 320px, 1280px);
         color: var(--secondary-font-color);
     }
 
     &__byline {
-        @include responsiveFont(24px, 48px);
+        @include responsiveSize("font-size", 24px, 48px, 320px, 1280px);
         color: var(--secondary-font-color);
     }
 }

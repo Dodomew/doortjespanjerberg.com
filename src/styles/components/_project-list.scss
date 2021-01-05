@@ -9,11 +9,12 @@
     position: relative;
     border-radius: 5px;
 
-    &:hover {
+    &:hover,
+    &:active {
         cursor: pointer;
 
         &::before {
-            clip-path: inset(0 0 0 0 round 5px);
+            transform: scale(1);
         }
     }
 
@@ -25,10 +26,12 @@
         bottom: 0;
         right: 0;
         background-color: #c5c5c5;
-        clip-path: inset(40px 0 20px 40px round 5px);
-        transition: clip-path 0.33s cubic-bezier(0.72, 0.13, 0.31, 0.96);
+        transform-origin: bottom right;
+        transform: scale(0.9);
+        transition: transform 0.25s cubic-bezier(0.49, 1.42, 0.25, 1.33);
         z-index: 0;
         margin: -20px;
+        border-radius: 5px;
     }
 
     @include tablet {

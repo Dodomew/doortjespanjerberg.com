@@ -40,24 +40,64 @@ $screen-dl-min: 1280px;
     @include screenreader;
 }
 
-//- Mixin: Fluid Type
-///
-/// Magic calc + vh to allow text to be fluid between minimum
-/// and maximum breakpoints.
-///
-/// @group typography
-/// @param {variable} $min-font-size [12px] - Minimum font size
-/// @param {variable} $max-font-size [24px] - Maximum font size
-/// @param {variable} $lower-range [420px] - Stop scaling font smaller at this screen resolution
-/// @param {variable} $upper-range [900px] - Stop scaling font larger at this screen resolution
-/// @example
-///   h1 {
-///     @include responsive-type(20px, 48px);
-///   }
-/// @site https://madebymike.com.au/writing/precise-control-responsive-typography/
+/*
+    Mixin: Fluid Type
+    Magic calc + vh to allow text to be fluid between minimum
+    and maximum breakpoints.
 
-@mixin responsiveFont($min-font-size: 16px, $max-font-size: 20px, $lower-range: 300px, $upper-range: 1280px) {
-    font-size: calc(
+    @group typography
+    @param {variable} $min-font-size [12px] - Minimum font size
+    @param {variable} $max-font-size [24px] - Maximum font size
+    @param {variable} $lower-range [420px] - Stop scaling font smaller at this screen resolution
+    @param {variable} $upper-range [900px] - Stop scaling font larger at this screen resolution
+
+    @example
+    h1 {
+        @include responsiveSize("font-size", 30px, 60px, 300px, 768px);
+        @include responsiveSizeWithCSSFunction("transform", "translateX", 0px, 100px, 300px, 768px);
+    }
+
+    @site https://madebymike.com.au/writing/precise-control-responsive-typography/
+
+    This is called a LERP, linear interpolation
+    lerp(a, b, x) = a + (b -a ) * x
+
+    The reason some values get * 0 + 1, is I think to convert the value from px to non-px, e.g. 30px to 30
+    Calc cant calculate 30px + 30px, doesnt know how to work with px. It must be something like 30px + 30
+
+    You can use this mixin for things like font-size, line-height, margins, paddings etc
+    This is not animating, its calculating, therefor its impact on performance is minimal!
+*/
+
+// Default . Use for things like font-size, line-height, margins etc
+@mixin responsiveSize(
+    $cssProperty,
+    // default values, override where needed
+    $min-font-size: 16px,
+    $max-font-size: 20px,
+    $lower-range: 320px,
+    $upper-range: 1440px
+) {
+    @include responsiveSizeWithCSSFunction(
+        $cssProperty,
+        null,
+        $min-font-size,
+        $max-font-size,
+        $lower-range,
+        $upper-range
+    );
+}
+
+// Special usage for css props which have functions, like transform: translate()
+@mixin responsiveSizeWithCSSFunction(
+    $cssProperty,
+    $withCSSFunction: null,
+    $min-font-size: 16px,
+    $max-font-size: 20px,
+    $lower-range: 320px,
+    $upper-range: 1440px
+) {
+    $lerp: calc(
         #{$min-font-size} + #{(
                 ($max-font-size / ($max-font-size * 0 + 1)) - ($min-font-size / ($min-font-size * 0 + 1))
             )} * ((100vw - #{$lower-range}) / #{(
@@ -65,10 +105,25 @@ $screen-dl-min: 1280px;
                     )})
     );
 
-    @media screen and (max-width: $lower-range) {
-        font-size: $min-font-size;
+    @if ($withCSSFunction != null) {
+        #{$cssProperty}: #{"#{$withCSSFunction}(#{$lerp})"};
+    } @else {
+        #{$cssProperty}: $lerp;
     }
+
+    @media screen and (max-width: $lower-range) {
+        @if ($withCSSFunction != null) {
+            #{$cssProperty}: #{"#{$withCSSFunction}(#{$min-font-size})"};
+        } @else {
+            #{$cssProperty}: $min-font-size;
+        }
+    }
+
     @media screen and (min-width: $upper-range) {
-        font-size: $max-font-size;
+        @if ($withCSSFunction != null) {
+            #{$cssProperty}: #{"#{$withCSSFunction}(#{$max-font-size})"};
+        } @else {
+            #{$cssProperty}: $max-font-size;
+        }
     }
 }
