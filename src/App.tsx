@@ -22,8 +22,9 @@ const App = () => {
 	return (
 		<Fragment>
 			<BrowserRouter>
+				<div className="rainbows"></div>
 				<Header />
-				<div className="content">
+				<div className="content container">
 					<Route render={({ location }) => (
 						<SwitchTransition mode="out-in">
 							<CSSTransition
@@ -43,7 +44,6 @@ const App = () => {
 					)}
 					/>
 				</div>
-
 			</BrowserRouter>
 		</Fragment>
 	)

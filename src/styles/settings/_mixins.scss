@@ -127,3 +127,38 @@ $screen-dl-min: 1280px;
         }
     }
 }
+
+/*
+    CSS rainbow bg pattern from : https://codepen.io/lunamatic/pen/MBaXwB
+*/
+
+@mixin rainbowWaves($posX, $posY) {
+    background-image: repeating-radial-gradient(
+        circle at $posX $posY,
+        var(--trans),
+        var(--trans) 0.2em,
+        var(--wave6) 0.21em,
+        var(--wave6) 0.24em,
+        var(--wave5) 0.25em,
+        var(--wave5) 0.3em,
+        var(--wave4) 0.31em,
+        var(--wave4) 0.35em,
+        var(--wave3) 0.36em,
+        var(--wave3) 0.4em,
+        var(--wave2) 0.41em,
+        var(--wave2) 0.45em,
+        var(--wave1) 0.46em,
+        var(--wave1) 0.5em,
+        var(--trans) 0.51em,
+        var(--trans) 2em
+    );
+}
+
+/*
+    https://codepen.io/_twosmalltrees/pen/EORRby
+*/
+@mixin vintageTextShadow($col1, $col2) {
+    text-shadow: 0.5px 0.5px $col1, 1px 1px $col1, 2px 2px $col1, 2.5px 2.5px $col2, 3px 3px $col2, 3.5px 3.5px $col2,
+        4px 4px $col2, 4.5px 4.5px $col2, 5px 5px $col2, 5.5px 5.5px $col2, 6px 6px $col2, 6.5px 6.5px $col2,
+        7px 7px $col2, 7.5px 7.5px $col2;
+}

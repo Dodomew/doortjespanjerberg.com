@@ -3,10 +3,8 @@ import { Document as PrismicDocument } from "prismic-javascript/d.ts/documents";
 import Projects from "../../components/Projects/Projects";
 
 const Homepage = () => {
-    return(
-        <div className="container">
-            <Projects />
-        </div>
+    return (
+        <Projects />
     )
 }
 

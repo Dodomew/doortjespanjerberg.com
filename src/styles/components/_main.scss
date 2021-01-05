@@ -2,6 +2,7 @@
     display: flex;
     flex-flow: column nowrap;
     min-height: 100%;
+    position: relative;
 }
 
 .content {
@@ -15,10 +16,49 @@
 }
 
 .container {
-    max-width: 1280px;
+    max-width: 1024px;
+    width: 100%;
     margin: 0 auto;
+    background-color: #f1ede8;
 }
 
 .project-detail {
     background-color: pink;
+}
+
+.rainbows {
+    height: 100%;
+    width: 100%;
+    font-size: 200px;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: #006d5e;
+    @include rainbowWaves(0.5em, 0.5em);
+    background-size: 1em 0.5em;
+
+    &::before,
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+
+    &::before {
+        @include rainbowWaves(0.5em, 0.5em);
+        background-size: 1em 0.5em;
+        background-position: 0.5em 0.75em;
+    }
+
+    &::after {
+        @include rainbowWaves(0.5em, 0.75em);
+        background-size: 1em 0.5em;
+        background-position: 0em 0.25em;
+    }
 }
