@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {BrowserRouter as Router, Link} from "react-router-dom";
+import { BrowserRouter as Router, Link, NavLink, useLocation } from "react-router-dom";
 import { Document as PrismicDocument } from "prismic-javascript/d.ts/documents"; //There is a React Document and a Prismic Document = namespace clash
 import usePrismicGetSingle from "../../hooks/usePrismicGetSingle";
 
@@ -10,33 +10,44 @@ interface HeaderProps {
 
 const Header = () => {
     const [render, setRender] = useState(false);
-    const headerDocument = usePrismicGetSingle({ id: "header"});
+    const headerDocument = usePrismicGetSingle({ id: "header" });
 
     useEffect(() => {
-        if(headerDocument) {
+        if (headerDocument) {
             setRender(true);
         }
     }, [headerDocument])
+
+    const currentRoute = useLocation();
+    console.log(currentRoute)
 
     const headerTitle = headerDocument?.data.title[0].text ?? "Loading...";
     const headerSubtitle = headerDocument?.data.subtitle[0].text ?? "Loading...";
 
     return (
-        <div className="header">
+        <div className="header container">
             <div className="header__content">
                 <Link to={'/'} className="header__link">
                     <h2 className="header__byline">
-                        <span className="header__text">
-                            {headerTitle}
-                        </span>
+                        {headerTitle}
                     </h2>
                     <h3 className="header__title">
-                        <span className="header__text">
-                            {headerSubtitle}
-                        </span>
+                        {headerSubtitle}
                     </h3>
                 </Link>
             </div>
+            <ul className="header__menu">
+                <li>
+                    <NavLink exact to="/" className="header__menu-item" activeClassName="is-active">
+                        Projects
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/contact" className="header__menu-item" activeClassName="is-active">
+                        Contact
+                    </NavLink>
+                </li>
+            </ul>
         </div>
     )
 }

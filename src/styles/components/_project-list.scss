@@ -30,8 +30,12 @@
         transform: scale(0.9);
         transition: transform 0.25s cubic-bezier(0.49, 1.42, 0.25, 1.33);
         z-index: 0;
-        margin: -20px;
+        margin: -10px;
         border-radius: 5px;
+
+        @include tablet {
+            margin: -20px;
+        }
     }
 
     @include tablet {
