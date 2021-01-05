@@ -1,14 +1,4 @@
 @font-face {
-    font-family: "Poppins Black";
-    src: url("../fonts/Poppins-Black.ttf") format("truetype");
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-    unicode-range: U+000-5FF; /* Download only latin glyphs */
-    src: local("Poppins Black"), url("../fonts/Poppins-Black.ttf") format("truetype");
-}
-
-@font-face {
     font-family: "Roboto Slab";
     src: url("../fonts/RobotoSlab-Variable.ttf") format("truetype");
     font-weight: 300 900;
