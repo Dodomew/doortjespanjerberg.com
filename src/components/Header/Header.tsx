@@ -28,7 +28,10 @@ const Header = () => {
         <div className="header container">
             <div className="header__content">
                 <Link to={'/'} className="header__link">
-                    <h2 className="header__byline">
+                    <h2 className="header__byline" data-text={headerTitle}>
+                        <span className="header__byline--stroke" data-text={headerTitle}>
+                            {headerTitle}
+                        </span>
                         {headerTitle}
                     </h2>
                     <h3 className="header__title">
