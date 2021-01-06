@@ -162,3 +162,30 @@ $screen-dl-min: 1280px;
         4px 4px $col2, 4.5px 4.5px $col2, 5px 5px $col2, 5.5px 5.5px $col2, 6px 6px $col2, 6.5px 6.5px $col2,
         7px 7px $col2, 7.5px 7.5px $col2;
 }
+
+// https://www.petercarrero.com/examples/stroke/
+@mixin doubleStrokeFont($col1, $col2, $size1, $size2) {
+    background: transparent;
+    z-index: 0;
+    color: #fff;
+
+    &::before,
+    &::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+    }
+
+    &::before {
+        -webkit-text-stroke: $size1 $col1;
+        z-index: -1;
+    }
+
+    &::after {
+        -webkit-text-stroke: $size2 $col2;
+        z-index: -2;
+    }
+}

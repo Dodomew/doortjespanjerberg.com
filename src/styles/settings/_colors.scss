@@ -4,6 +4,8 @@
     --primary-font-color: hsl(0, 0%, 5%);
     --secondary-font-color: hsl(0, 0%, 95%);
 
+    --bg-color: #f1ede8;
+
     // Rainbow bg colors
     --trans: transparent;
     --wave1: #d48249;
@@ -12,4 +14,10 @@
     --wave4: #537f3d;
     --wave5: #21774e;
     --wave6: #006d5e;
+
+    //classic '70s color scheme
+    --color70-1: hsl(223, 10%, 40%);
+    --color70-2: hsl(8, 63%, 51%);
+    --color70-3: hsl(32, 100%, 42%);
+    --color70-4: hsl(47, 73%, 66%);
 }
