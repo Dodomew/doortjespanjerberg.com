@@ -1,6 +1,7 @@
 .main {
     display: flex;
     flex-flow: column nowrap;
+    align-items: center;
     min-height: 100%;
     position: relative;
 }
@@ -16,10 +17,15 @@
 }
 
 .container {
-    max-width: 1024px;
     width: 100%;
     margin: 0 auto;
-    background-color: #f1ede8;
+    background-color: var(--bg-color);
+}
+
+.wrapper {
+    max-width: 1024px;
+    width: 100%;
+    padding: 0 20px;
 }
 
 .project-detail {
