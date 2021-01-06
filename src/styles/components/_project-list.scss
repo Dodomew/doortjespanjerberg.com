@@ -16,6 +16,10 @@
         &::before {
             transform: scale(1);
         }
+
+        &::after {
+            clip-path: circle(142% at 100% 100%);
+        }
     }
 
     &::before {
@@ -32,6 +36,34 @@
         z-index: 0;
         margin: -10px;
         border-radius: 5px;
+        // background: radial-gradient(circle at bottom right, red 0%, red 0%, #c5c5c5 0%, #c5c5c5 100%);
+
+        @include tablet {
+            margin: -20px;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: radial-gradient(
+            circle at bottom right,
+            red 0%,
+            red 33%,
+            blue 33%,
+            blue 66%,
+            yellow 66%,
+            yellow 100%
+        );
+        clip-path: circle(0% at 100% 100%);
+        margin: -10px;
+        transition: clip-path 0.5s ease-out;
+        border-radius: 5px;
+        z-index: 0;
 
         @include tablet {
             margin: -20px;
@@ -53,12 +85,14 @@
         padding-bottom: 56.25%;
         border-radius: 5px;
         position: relative;
+        z-index: 1;
     }
 
     &__content {
         position: relative;
         display: flex;
         align-items: center;
+        z-index: 1;
     }
 
     &__link {

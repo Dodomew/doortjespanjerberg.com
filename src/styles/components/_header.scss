@@ -28,6 +28,7 @@
         @include doubleStrokeFont(var(--color70-1), var(--color70-2), 10px, 20px);
         color: var(--bg-color);
         text-shadow: 5px 5px var(--color70-1), 5px 5px var(--color70-1);
+        letter-spacing: 2px;
 
         @include tablet {
             margin-bottom: 60px;
