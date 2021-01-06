@@ -34,7 +34,7 @@ const Header = () => {
                         </span>
                         {headerTitle}
                     </h2>
-                    <h3 className="header__title">
+                    <h3 className="header__title" data-text={headerSubtitle}>
                         {headerSubtitle}
                     </h3>
                 </Link>
