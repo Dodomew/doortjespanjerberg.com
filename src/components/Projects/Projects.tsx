@@ -21,12 +21,12 @@ const Projects = () => {
     let projectListItems = null;
 
     if (listData && listData.results.length > 0) {
-        projectListItems = listData.results.map((item) => {
+        projectListItems = listData.results.map((item, index) => {
             if (item.data) {
                 const itemSlug = item.slugs[0];
                 const itemData = item.data as ProjectItemProps;
                 return (
-                    <ProjectItem key={item.id} {...itemData} slug={itemSlug} />
+                    <ProjectItem key={item.id} {...itemData} slug={itemSlug} index={index} />
                 )
             }
         })

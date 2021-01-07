@@ -41,8 +41,9 @@ interface ProjectItemProps {
             height: number
         }
     },
-    title: TextPropArray
-    subtitle: TextPropArray
+    title: TextPropArray,
+    subtitle: TextPropArray,
+    index: number
 }
 
 const ProjectItem = (data: ProjectItemProps) => {
@@ -52,7 +53,7 @@ const ProjectItem = (data: ProjectItemProps) => {
 
     console.log(data)
 
-    const { title, subtitle, link } = { ...data };
+    const { title, subtitle, link, index } = { ...data };
     const { url, dimensions } = { ...data.media };
 
     const ProjectListItemSubtitle = withObjectExistsRenderer(Subtitle);
@@ -62,9 +63,14 @@ const ProjectItem = (data: ProjectItemProps) => {
 
     return (
         <li className="project-listitem">
-            <div
-                className="project-listitem__media"
-                style={{ backgroundImage: "url(" + url + ")" }}></div>
+            <div className="project-listitem__media">
+                <div className="project-listitem__bg-wrapper">
+                    <div className={'project-listitem__bg bg-' + index}></div>
+                </div>
+                <div
+                    className="project-listitem__img"
+                    style={{ backgroundImage: "url(" + url + ")" }}></div>
+            </div>
             <div className="project-listitem__content">
                 <div className="project-listitem__text">
                     {<ProjectListItemTitle {...title} />}

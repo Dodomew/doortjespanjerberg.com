@@ -1,6 +1,7 @@
 .project-list {
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 .project-listitem {
@@ -8,84 +9,119 @@
     margin-bottom: 60px;
     position: relative;
     border-radius: 5px;
+    background-color: lightgrey;
+    display: flex;
+    flex-flow: column nowrap;
 
-    &:hover,
-    &:active {
-        cursor: pointer;
+    // &:hover,
+    // &:active {
+    //     cursor: pointer;
 
-        &::before {
-            transform: scale(1);
-        }
+    //     &::before {
+    //         transform: scale(1);
+    //     }
 
-        &::after {
-            clip-path: circle(142% at 100% 100%);
-        }
-    }
+    //     &::after {
+    //         clip-path: circle(142% at 100% 100%);
+    //     }
+    // }
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background-color: #c5c5c5;
-        transform-origin: bottom right;
-        transform: scale(0.9);
-        transition: transform 0.25s cubic-bezier(0.49, 1.42, 0.25, 1.33);
-        z-index: 0;
-        margin: -10px;
-        border-radius: 5px;
-        // background: radial-gradient(circle at bottom right, red 0%, red 0%, #c5c5c5 0%, #c5c5c5 100%);
+    // &::before {
+    //     content: "";
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     bottom: 0;
+    //     right: 0;
+    //     background-color: #c5c5c5;
+    //     transform-origin: bottom right;
+    //     transform: scale(0.9);
+    //     transition: transform 0.25s cubic-bezier(0.49, 1.42, 0.25, 1.33);
+    //     z-index: 0;
+    //     margin: -10px;
+    //     border-radius: 5px;
+    //     // background: radial-gradient(circle at bottom right, red 0%, red 0%, #c5c5c5 0%, #c5c5c5 100%);
 
-        @include tablet {
-            margin: -20px;
-        }
-    }
+    //     @include tablet {
+    //         margin: -20px;
+    //     }
+    // }
 
-    &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: radial-gradient(
-            circle at bottom right,
-            red 0%,
-            red 33%,
-            blue 33%,
-            blue 66%,
-            yellow 66%,
-            yellow 100%
-        );
-        clip-path: circle(0% at 100% 100%);
-        margin: -10px;
-        transition: clip-path 0.5s ease-out;
-        border-radius: 5px;
-        z-index: 0;
+    // &::after {
+    //     content: "";
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     bottom: 0;
+    //     right: 0;
+    //     background: radial-gradient(
+    //         circle at bottom right,
+    //         red 0%,
+    //         red 33%,
+    //         blue 33%,
+    //         blue 66%,
+    //         yellow 66%,
+    //         yellow 100%
+    //     );
+    //     clip-path: circle(0% at 100% 100%);
+    //     margin: -10px;
+    //     transition: clip-path 0.5s ease-out;
+    //     border-radius: 5px;
+    //     z-index: 0;
 
-        @include tablet {
-            margin: -20px;
-        }
-    }
+    //     @include tablet {
+    //         margin: -20px;
+    //     }
+    // }
 
     @include tablet {
         flex: 0 0 calc(50% - 50px);
-
-        &:nth-child(odd) {
-            margin-right: 100px;
-        }
     }
 
-    &__media {
+    @include desktop-small {
+        flex: 0 0 calc(33.33% - 50px);
+    }
+
+    &__img {
         background-size: cover;
         background-repeat: no-repeat;
         height: 0;
-        padding-bottom: 56.25%;
-        border-radius: 5px;
+        padding-bottom: 50%;
         position: relative;
         z-index: 1;
+        border-radius: 50%;
+        width: 50%;
+        margin: 0 auto;
+        background-position: center;
+        transform: translateY(50%);
+        z-index: 2;
+    }
+
+    &__media {
+        position: relative;
+    }
+
+    &__bg-wrapper {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: circle(0% at 50% 100%);
+        transition: clip-path 0.25s linear;
+
+        .project-listitem:hover & {
+            clip-path: circle(100% at 50% 100%);
+        }
+    }
+
+    &__bg {
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 
     &__content {
@@ -93,10 +129,119 @@
         display: flex;
         align-items: center;
         z-index: 1;
+        flex: 1;
+        background-color: grey;
+        padding: 60px 20px 20px;
+        border-radius: 0 0 5px 5px;
     }
 
     &__link {
         margin-left: auto;
         margin-right: 10px;
+    }
+}
+
+@keyframes anim1 {
+    0% {
+        background-position: right;
+    }
+
+    100% {
+        background-position: left;
+    }
+}
+
+@keyframes anim2 {
+    0% {
+        background-position: left;
+    }
+
+    100% {
+        background-position: right;
+    }
+}
+
+@keyframes anim3 {
+    0% {
+        background-position: bottom;
+    }
+
+    100% {
+        background-position: top;
+    }
+}
+
+.bg-0 {
+    background: repeating-linear-gradient(
+        45deg,
+        var(--wave1),
+        var(--wave1) 20px,
+        var(--wave2) 20px,
+        var(--wave2) 40px,
+        var(--wave3) 40px,
+        var(--wave3) 60px,
+        var(--wave4) 60px,
+        var(--wave4) 80px
+    );
+    background-size: 300% 100%;
+    animation: anim1 15s infinite linear;
+}
+
+.bg-1 {
+    background-color: var(--color70-2);
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: 300% 100%;
+        animation: anim1 15s infinite linear;
+    }
+
+    &::before {
+        background: repeating-linear-gradient(
+            45deg,
+            var(--color70-3),
+            var(--color70-3) 10px,
+            var(--trans) 10px,
+            var(--trans) 20px
+        );
+        background-size: 300% 100%;
+        animation: anim1 15s infinite linear;
+    }
+
+    &::after {
+        top: 0;
+        background: repeating-linear-gradient(
+            -45deg,
+            var(--trans),
+            var(--trans) 10px,
+            var(--color70-3) 10px,
+            var(--color70-3) 20px
+        );
+    }
+}
+
+.bg-2 {
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        animation: anim3 5s infinite linear;
+    }
+
+    &::before {
+        background: repeating-radial-gradient(
+            circle at 50%,
+            var(--color70-4),
+            var(--color70-4) 1rem,
+            var(--color70-2) 1rem,
+            var(--color70-2) 2rem
+        );
+        background-size: 50% 75%;
     }
 }
