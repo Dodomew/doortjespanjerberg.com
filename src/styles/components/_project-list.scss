@@ -1,78 +1,24 @@
 .project-list {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop-small {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .project-listitem {
     flex: 1 0 100%;
-    margin-bottom: 60px;
     position: relative;
     border-radius: 5px;
     background-color: lightgrey;
     display: flex;
     flex-flow: column nowrap;
-
-    // &:hover,
-    // &:active {
-    //     cursor: pointer;
-
-    //     &::before {
-    //         transform: scale(1);
-    //     }
-
-    //     &::after {
-    //         clip-path: circle(142% at 100% 100%);
-    //     }
-    // }
-
-    // &::before {
-    //     content: "";
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     bottom: 0;
-    //     right: 0;
-    //     background-color: #c5c5c5;
-    //     transform-origin: bottom right;
-    //     transform: scale(0.9);
-    //     transition: transform 0.25s cubic-bezier(0.49, 1.42, 0.25, 1.33);
-    //     z-index: 0;
-    //     margin: -10px;
-    //     border-radius: 5px;
-    //     // background: radial-gradient(circle at bottom right, red 0%, red 0%, #c5c5c5 0%, #c5c5c5 100%);
-
-    //     @include tablet {
-    //         margin: -20px;
-    //     }
-    // }
-
-    // &::after {
-    //     content: "";
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     bottom: 0;
-    //     right: 0;
-    //     background: radial-gradient(
-    //         circle at bottom right,
-    //         red 0%,
-    //         red 33%,
-    //         blue 33%,
-    //         blue 66%,
-    //         yellow 66%,
-    //         yellow 100%
-    //     );
-    //     clip-path: circle(0% at 100% 100%);
-    //     margin: -10px;
-    //     transition: clip-path 0.5s ease-out;
-    //     border-radius: 5px;
-    //     z-index: 0;
-
-    //     @include tablet {
-    //         margin: -20px;
-    //     }
-    // }
 
     @include tablet {
         flex: 0 0 calc(50% - 50px);
@@ -85,8 +31,6 @@
     &__img {
         background-size: cover;
         background-repeat: no-repeat;
-        height: 0;
-        padding-bottom: 50%;
         position: relative;
         z-index: 1;
         border-radius: 50%;
@@ -95,6 +39,12 @@
         background-position: center;
         transform: translateY(50%);
         z-index: 2;
+
+        &::after {
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+        }
     }
 
     &__media {
@@ -108,6 +58,28 @@
         height: 100%;
         clip-path: circle(0% at 50% 100%);
         transition: clip-path 0.25s linear;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background-color: white;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(calc(-50% - 1px), 0%) scale(1.05); // -1px cause the img is sometimes a float (e.g. 199.5). This corrects that
+            border-radius: 50%;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background-color: #fff;
+            bottom: 0;
+        }
 
         .project-listitem:hover & {
             clip-path: circle(100% at 50% 100%);
@@ -139,6 +111,12 @@
         margin-left: auto;
         margin-right: 10px;
     }
+
+    &__bg-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
 }
 
 @keyframes anim1 {
@@ -151,37 +129,37 @@
     }
 }
 
-@keyframes anim2 {
+@keyframes anim3 {
     0% {
-        background-position: left;
+        background-position: 50% 0%;
     }
 
     100% {
-        background-position: right;
+        background-position: 50% 295%; //dont know why, but it works
     }
 }
 
-@keyframes anim3 {
+@keyframes anim5 {
     0% {
-        background-position: bottom;
+        transform: rotate(0deg) scale(1.5);
     }
 
     100% {
-        background-position: top;
+        transform: rotate(90deg) scale(1.5);
     }
 }
 
 .bg-0 {
     background: repeating-linear-gradient(
         45deg,
-        var(--wave1),
-        var(--wave1) 20px,
-        var(--wave2) 20px,
-        var(--wave2) 40px,
-        var(--wave3) 40px,
-        var(--wave3) 60px,
-        var(--wave4) 60px,
-        var(--wave4) 80px
+        var(--color70-2),
+        var(--color70-2) 20px,
+        var(--color70-3) 20px,
+        var(--color70-3) 40px,
+        var(--color70-4) 40px,
+        var(--color70-4) 60px,
+        var(--color70-1) 60px,
+        var(--color70-1) 80px
     );
     background-size: 300% 100%;
     animation: anim1 15s infinite linear;
@@ -197,7 +175,6 @@
         width: 100%;
         height: 100%;
         background-size: 300% 100%;
-        animation: anim1 15s infinite linear;
     }
 
     &::before {
@@ -208,7 +185,7 @@
             var(--trans) 10px,
             var(--trans) 20px
         );
-        background-size: 300% 100%;
+        background-size: 305% 100%;
         animation: anim1 15s infinite linear;
     }
 
@@ -225,23 +202,44 @@
 }
 
 .bg-2 {
-    &::before,
-    &::after {
+    &::before {
         content: "";
         position: absolute;
         width: 100%;
         height: 100%;
         animation: anim3 5s infinite linear;
-    }
-
-    &::before {
         background: repeating-radial-gradient(
             circle at 50%,
             var(--color70-4),
-            var(--color70-4) 1rem,
-            var(--color70-2) 1rem,
-            var(--color70-2) 2rem
+            var(--color70-4) 16px,
+            var(--color70-3) 16px,
+            var(--color70-3) 32px
         );
         background-size: 50% 75%;
+        background-position: 50% 0%;
+    }
+}
+
+.bg-3 {
+    background-color: var(--color70-3);
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+        background-color: var(--color70-2);
+        -webkit-mask: repeating-conic-gradient(from 0deg, transparent 0deg 10deg, var(--color70-4) 10deg 20deg);
+        transform: rotate(0deg) scale(1.5);
+        -webkit-backface-visibility: hidden;
+    }
+
+    &::before {
+        .project-listitem:hover & {
+            animation: anim5 10s infinite linear;
+        }
     }
 }

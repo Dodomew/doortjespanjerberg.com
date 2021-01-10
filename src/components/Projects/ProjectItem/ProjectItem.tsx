@@ -65,7 +65,11 @@ const ProjectItem = (data: ProjectItemProps) => {
         <li className="project-listitem">
             <div className="project-listitem__media">
                 <div className="project-listitem__bg-wrapper">
-                    <div className={'project-listitem__bg bg-' + index}></div>
+                    <div
+                        className={'project-listitem__bg bg-' + index}
+                    >
+                        <div className={'project-listitem__inner project-listitem__bg bg-' + index}></div>
+                    </div>
                 </div>
                 <div
                     className="project-listitem__img"
