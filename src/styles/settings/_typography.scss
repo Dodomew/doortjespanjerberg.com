@@ -13,6 +13,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
 @mixin font-pri-reg {
     font-family: "Roboto Slab", "Helvetica Neue", sans-serif;
     font-weight: 400;
@@ -25,4 +32,8 @@
 
 @mixin font-sec-black {
     font-family: "Mrs Sheppards", "Helvetica Neue", sans-serif;
+}
+
+@mixin font-text-regular {
+    font-family: "Roboto", "Helvetica Neue", sans-serif;
 }

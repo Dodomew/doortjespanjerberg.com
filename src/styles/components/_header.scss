@@ -11,6 +11,7 @@
         display: inline-block;
         @include doubleStrokeFont(var(--color70-1), transparent, 5px, 0px);
         color: var(--bg-color);
+        @include font-pri-bold;
 
         @include tablet {
             @include doubleStrokeFont(var(--color70-1), transparent, 8px, 0px);

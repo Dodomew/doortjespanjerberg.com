@@ -62,29 +62,33 @@ const ProjectItem = (data: ProjectItemProps) => {
 
 
     return (
+
         <li className="project-listitem">
-            <div className="project-listitem__media">
-                <div className="project-listitem__bg-wrapper">
-                    <div
-                        className={'project-listitem__bg bg-' + index}
-                    >
-                        <div className={'project-listitem__inner project-listitem__bg bg-' + index}></div>
+            <Link to={"projects/" + data.slug} className="project-listitem__wrapper">
+                <div className="project-listitem__media">
+                    <div className="project-listitem__bg-wrapper">
+                        <div
+                            className={'project-listitem__bg bg-' + index}
+                        >
+                            <div className={'project-listitem__inner project-listitem__bg bg-' + index}></div>
+                        </div>
                     </div>
+                    <div
+                        className="project-listitem__img"
+                        style={{ backgroundImage: "url(" + url + ")" }}></div>
                 </div>
-                <div
-                    className="project-listitem__img"
-                    style={{ backgroundImage: "url(" + url + ")" }}></div>
-            </div>
-            <div className="project-listitem__content">
-                <div className="project-listitem__text">
-                    {<ProjectListItemTitle {...title} />}
-                    {<ProjectListItemSubtitle {...subtitle} />}
+                <div className="project-listitem__content">
+                    <div className="project-listitem__text">
+                        <ProjectListItemTitle {...title} />
+                        <ProjectListItemSubtitle {...subtitle} />
+                    </div>
+                    <span className="project-listitem__link">
+                        View project
+                    </span>
                 </div>
-                <Link to={"projects/" + data.slug} className="project-listitem__link">
-                    Link
-                </Link>
-            </div>
-        </li>
+            </Link>
+        </li >
+
     )
 }
 
