@@ -1,5 +1,6 @@
 import React from "react";
-import { MediaSlice, MediaSliceProps} from "./MediaSlice";
+import { MediaSlice, MediaSliceProps } from "./MediaSlice";
+import { ContentSlice, ContentSliceProps } from "./ContentSlice";
 
 interface SliceControllerProps {
     body: [
@@ -13,13 +14,18 @@ const SliceController = (data: SliceControllerProps) => {
     const sliceData = data.body;
     let sliceJSX = null;
 
-    if(sliceData.length > 0) {
-        sliceJSX = sliceData.map((slice) => {
+    if (sliceData.length > 0) {
+        sliceJSX = sliceData.map((slice, index) => {
             switch (slice.slice_type) {
                 case "media":
                     const mediaSliceData = slice as MediaSliceProps;
-                    return(
-                        <MediaSlice {...mediaSliceData}/>
+                    return (
+                        <MediaSlice key={mediaSliceData.slice_type + index} {...mediaSliceData} />
+                    );
+                case "content":
+                    const contentSliceData = slice as ContentSliceProps;
+                    return (
+                        <ContentSlice key={contentSliceData.slice_type + index} {...contentSliceData} />
                     );
                 default:
                     break;

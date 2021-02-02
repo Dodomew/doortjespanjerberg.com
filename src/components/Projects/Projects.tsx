@@ -1,22 +1,23 @@
-import Prismic from 'prismic-javascript';
 import React, { useEffect, useState } from 'react'
-import { client } from '../../prismic-configuration';
-import { Document as PrismicDocument } from "prismic-javascript/d.ts/documents"; //There is a React Document and a Prismic Document = namespace clash
 import ApiSearchResponse from "prismic-javascript/d.ts/ApiSearchResponse";
 import { ProjectItem } from "./ProjectItem/ProjectItem";
 import { ProjectItemProps } from "./ProjectItem/ProjectItem";
+import { prismicGetByType } from '../../ApiHelpers/prismicGetByType';
 
 const Projects = () => {
     const [listData, setListData] = useState<ApiSearchResponse>();
     const queryOptions = { orderings: "[my.dialogue_page.date desc]" };
 
-    client.query([
-        Prismic.Predicates.at('document.type', 'project_detail'),
-        Prismic.Predicates.at('my.project_detail.parent', 'X-MM-RAAACAAoI6Q')
-    ], queryOptions).then(res => {
-        setListData(res);
-        console.log(res)
-    });
+    useEffect(() => {
+        if (!listData) {
+            fetchData();
+        }
+    }, [listData]);
+
+    const fetchData = async () => {
+        const prismicData = await prismicGetByType({ types: new Set(["project_detail"]), options: queryOptions });
+        setListData(prismicData);
+    };
 
     let projectListItems = null;
 

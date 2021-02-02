@@ -46,8 +46,6 @@ const ProjectItem = (data: ProjectItemProps) => {
         return null;
     }
 
-    console.log(data)
-
     const { title, subtitle, index } = { ...data };
     const ProjectListItemSubtitle = withObjectExistsRenderer(Subtitle);
     const ProjectListItemTitle = withObjectExistsRenderer(Title);

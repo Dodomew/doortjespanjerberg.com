@@ -1,15 +1,10 @@
 import React, { Fragment } from 'react'
-import { Helmet } from 'react-helmet'
 import {
 	BrowserRouter,
-	Redirect,
 	Route,
 	Switch,
-	withRouter,
-	useLocation
 } from 'react-router-dom'
-import { apiEndpoint } from './prismic-configuration';
-import { TransitionGroup, CSSTransition, SwitchTransition } from "react-transition-group";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 import "./styles/main.scss";
 
 import { Header } from "./components/Header/Header";

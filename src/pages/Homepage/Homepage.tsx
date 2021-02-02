@@ -1,5 +1,4 @@
-import React from 'react'
-import { Document as PrismicDocument } from "prismic-javascript/d.ts/documents"; //There is a React Document and a Prismic Document = namespace clash
+import React from 'react';
 import Projects from "../../components/Projects/Projects";
 
 const Homepage = () => {

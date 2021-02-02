@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Link, NavLink, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
 import { Document as PrismicDocument } from "prismic-javascript/d.ts/documents"; //There is a React Document and a Prismic Document = namespace clash
-import usePrismicGetSingle from "../../hooks/usePrismicGetSingle";
+import { prismicGetSingle } from "../../ApiHelpers/prismicGetSingle";
 
 interface HeaderProps {
     title: string,
@@ -9,20 +9,19 @@ interface HeaderProps {
 }
 
 const Header = () => {
-    const [render, setRender] = useState(false);
-    const headerDocument = usePrismicGetSingle({ id: "header" });
+    const [header, setHeader] = useState<PrismicDocument>();
 
     useEffect(() => {
-        if (headerDocument) {
-            setRender(true);
-        }
-    }, [headerDocument])
+        fetchData();
+    }, []);
 
-    const currentRoute = useLocation();
-    console.log(currentRoute)
+    const fetchData = async () => {
+        const prismicData = await prismicGetSingle({ id: "header", options: {} });
+        setHeader(prismicData);
+    };
 
-    const headerTitle = headerDocument?.data.title[0].text ?? "Loading...";
-    const headerSubtitle = headerDocument?.data.subtitle[0].text ?? "Loading...";
+    const headerTitle = header?.data.title[0].text ?? "Loading...";
+    const headerSubtitle = header?.data.subtitle[0].text ?? "Loading...";
 
     return (
         <div className="header container">
