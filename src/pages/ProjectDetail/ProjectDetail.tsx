@@ -4,23 +4,10 @@ import { client } from "../../prismic-configuration";
 import { PrismicDocument } from "../../types/PrismicDocumentType";
 import { PrismicTextProp } from "../../types/PrismicTextProp";
 import { SliceController } from "../../slices/SliceController";
+import { ProjectDetailHero, ProjectDetailHeroProps } from "./ProjectDetailHero";
 
 interface ParamsProps {
 	uid: string;
-}
-
-interface ProjectDetailProps {
-	body: []
-	media: {
-		dimensions: {
-			width: number;
-			height: number;
-		};
-		alt: null;
-		url: string;
-	};
-	subtitle: PrismicTextProp
-	title: PrismicTextProp
 }
 
 const ProjectDetail = () => {
@@ -45,9 +32,10 @@ const ProjectDetail = () => {
 
 	return (
 		<div className="project-detail">
-			<h2>{projectDetailData.data.title[0].text}</h2>
-			<img src={projectDetailData.data.media.url} />
-			{ SliceController({ ...projectDetailData.data })}
+			<ProjectDetailHero {...projectDetailData.data} />
+			<div className="cms-content">
+				{SliceController({ ...projectDetailData.data })}
+			</div>
 		</div>
 	);
 };

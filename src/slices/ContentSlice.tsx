@@ -16,7 +16,7 @@ interface ContentSliceProps {
 const ContentSlice = (data: ContentSliceProps) => {
     const { title } = { ...data.primary };
     return (
-        <div>
+        <div className="cms-paragraph">
             <h3>{title[0].text}</h3>
             {
                 data.items.map((item, index) => {

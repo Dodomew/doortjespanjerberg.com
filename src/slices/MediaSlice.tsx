@@ -21,7 +21,7 @@ const MediaSlice = (data: MediaSliceProps) => {
 	};
 
 	return (
-		<div className="media">
+		<div className="cms-media">
 			<h1>{url}</h1>
 		</div>
 	);
