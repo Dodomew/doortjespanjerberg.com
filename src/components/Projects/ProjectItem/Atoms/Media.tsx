@@ -1,8 +1,30 @@
 import React from 'react';
-import { TextPropArray } from "../ProjectItem";
 
-const Media = (data : TextPropArray) => {
-    return <h3>{data[0].text}</h3>
+type MediaProps = {
+    alt: string,
+    url: string,
+    dimensions: {
+        width: number,
+        height: number
+    },
+    index: number
+}
+
+const Media = (data: MediaProps) => {
+    return (
+        <div className="project-listitem__media">
+            <div className="project-listitem__bg-wrapper">
+                <div
+                    className={'project-listitem__bg bg-' + data.index}
+                >
+                    <div className={'project-listitem__inner project-listitem__bg bg-' + data.index}></div>
+                </div>
+            </div>
+            <div
+                className="project-listitem__img"
+                style={{ backgroundImage: "url(" + data.url + ")" }}></div>
+        </div>
+    )
 }
 
 export default Media;

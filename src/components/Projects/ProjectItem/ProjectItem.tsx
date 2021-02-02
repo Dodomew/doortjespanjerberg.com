@@ -2,7 +2,9 @@ import React from 'react';
 import withObjectExistsRenderer from "../../HoC/withObjectExistsRenderer";
 import Title from "./Atoms/Title";
 import Subtitle from "./Atoms/Subtitle";
+import Media from "./Atoms/Media";
 import { Link } from 'react-router-dom';
+import { PrismicTextProp } from "../../../types/PrismicTextProp";
 
 /*
     Prismic API sends a normal text input as follows:
@@ -23,13 +25,6 @@ import { Link } from 'react-router-dom';
     If it's all good, the HoC returns the original component and we can render it without doing extra checks
 */
 
-interface TextProp {
-    text: string
-}
-
-export type TextPropArray = Array<TextProp>;
-
-
 interface ProjectItemProps {
     slug: string,
     link: string,
@@ -41,8 +36,8 @@ interface ProjectItemProps {
             height: number
         }
     },
-    title: TextPropArray,
-    subtitle: TextPropArray,
+    title: PrismicTextProp,
+    subtitle: PrismicTextProp,
     index: number
 }
 
@@ -53,30 +48,14 @@ const ProjectItem = (data: ProjectItemProps) => {
 
     console.log(data)
 
-    const { title, subtitle, link, index } = { ...data };
-    const { url, dimensions } = { ...data.media };
-
+    const { title, subtitle, index } = { ...data };
     const ProjectListItemSubtitle = withObjectExistsRenderer(Subtitle);
     const ProjectListItemTitle = withObjectExistsRenderer(Title);
-    // const ProjectListItemLink = withObjectExistsRenderer(Link);
-
 
     return (
-
         <li className="project-listitem">
             <Link to={"projects/" + data.slug} className="project-listitem__wrapper">
-                <div className="project-listitem__media">
-                    <div className="project-listitem__bg-wrapper">
-                        <div
-                            className={'project-listitem__bg bg-' + index}
-                        >
-                            <div className={'project-listitem__inner project-listitem__bg bg-' + index}></div>
-                        </div>
-                    </div>
-                    <div
-                        className="project-listitem__img"
-                        style={{ backgroundImage: "url(" + url + ")" }}></div>
-                </div>
+                <Media {...data.media} index={index} />
                 <div className="project-listitem__content">
                     <div className="project-listitem__text">
                         <ProjectListItemTitle {...title} />

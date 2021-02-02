@@ -1,7 +1,7 @@
 import React from 'react';
-import { TextPropArray } from "../ProjectItem";
+import { PrismicTextProp } from "../../../../types/PrismicTextProp";
 
-const Title = (data: TextPropArray) => {
+const Title = (data: PrismicTextProp) => {
     return <h3 className="project-listitem__title">{data[0].text}</h3>
 }
 
