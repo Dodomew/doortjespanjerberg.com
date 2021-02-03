@@ -40,7 +40,7 @@ const Header = () => {
             </div>
             <ul className="header__menu">
                 <li>
-                    <NavLink exact to="/" className="header__menu-item" activeClassName="is-active">
+                    <NavLink strict to="/projects" className="header__menu-item" activeClassName="is-active">
                         Projects
                     </NavLink>
                 </li>

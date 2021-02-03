@@ -1,0 +1,14 @@
+.project-detail {
+    &__hero-media {
+        height: 0px;
+        padding-bottom: 320px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 5px;
+
+        @include tablet {
+            padding-bottom: 480px;
+        }
+    }
+}

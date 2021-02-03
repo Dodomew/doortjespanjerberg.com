@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { client } from "../../prismic-configuration";
 import { PrismicDocument } from "../../types/PrismicDocumentType";
-import { PrismicTextProp } from "../../types/PrismicTextProp";
 import { SliceController } from "../../slices/SliceController";
 import { ProjectDetailHero, ProjectDetailHeroProps } from "./ProjectDetailHero";
 

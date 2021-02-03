@@ -1,22 +1,26 @@
 .cms-content {
-    max-width: 580px;
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 0 auto;
+    color: var(--primary-font-color);
 
     strong {
         font-weight: bold;
     }
 
     h4 {
-        font-size: 20px;
-        margin-bottom: 8px;
+        font-size: 24px;
+        margin-bottom: 16px;
+        @include font-pri-bold;
     }
 
     p {
         font-size: 16px;
         line-height: 24px;
+        margin-bottom: 24px;
     }
 
     ul {
-
     }
 
     li {
@@ -25,42 +29,51 @@
         position: relative;
 
         &::before {
-            content: '';
+            content: "";
             position: absolute;
             top: 7px;
             left: 0;
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background-color: $sec;
+            background-color: red;
+        }
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+.cms-paragraph {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.cms-media {
+    max-width: 780px;
+    margin: 24px auto;
+
+    &__list {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    &__list-item {
+        margin-bottom: 16px;
+
+        @include tablet {
+            flex: 1 0 calc(50% - 24px);
+            margin: 0 12px 24px;
         }
     }
 }
 
-.component {
-    margin: 0 auto 30px;
-
-    &:first-child {
-        margin-top: 20px;
-    }
-}
-
-.has-anim {
-    transform: translateY(30px);
-    opacity: 0;
-    transition: opacity 0.2s, transform 0.33s $easeInOutCubic;
-}
-
-.is-in-viewport {
-    transform: none;
-    opacity: 1;
-}
-
-@include media-query('desktop-sml') {
+@include desktop-small {
     .component {
         margin: 0 auto 60px;
 
-        &.cms-content + &.cms-content {
+        &.cms-paragraph + &.cms-paragraph {
             margin: 0 auto 40px;
         }
 

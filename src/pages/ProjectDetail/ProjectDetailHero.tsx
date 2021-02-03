@@ -25,7 +25,7 @@ const Subtitle = (data: PrismicTextProp) => {
 
 const Image = (data: PrismicImageProps) => {
     return (
-        <img src={data.url} />
+        <div style={{ backgroundImage: `url(${data.url})` }} className="project-detail__hero-media"></div>
     )
 }
 

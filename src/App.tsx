@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import {
 	BrowserRouter,
+	Redirect,
 	Route,
 	Switch,
 } from 'react-router-dom'
@@ -30,9 +31,11 @@ const App = () => {
 									timeout={166}>
 									<div className="anim">
 										<Switch location={location}>
-											<Route exact path="/" component={Homepage} />
-											<Route exact path="/projects/:uid" component={ProjectDetail} />
+											<Route exact path="/">
+												<Redirect to="/projects" />
+											</Route>
 											<Route exact path="/projects" component={Homepage} />
+											<Route exact path="/projects/:uid" component={ProjectDetail} />
 										</Switch>
 									</div>
 								</CSSTransition>
