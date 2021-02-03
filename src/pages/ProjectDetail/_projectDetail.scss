@@ -1,14 +1,91 @@
 .project-detail {
+    &__hero {
+        margin-bottom: 60px;
+    }
     &__hero-media {
-        height: 0px;
-        padding-bottom: 320px;
+        height: 320px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
         border-radius: 5px;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to top,
+                var(--primary-font-color) 0%,
+                var(--primary-font-color) 25%,
+                rgba(0, 0, 0, 0) 66%
+            );
+            z-index: 0;
+            border-radius: 0px 0px 5px 5px;
+        }
 
         @include tablet {
-            padding-bottom: 480px;
+            height: 480px;
+        }
+    }
+
+    &__hero-content {
+        width: 100%;
+        padding: 20px;
+        position: relative;
+
+        @include tablet {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @include desktop-small {
+            padding: 40px;
+        }
+    }
+
+    &__hero-text {
+        margin-bottom: 24px;
+
+        @include tablet {
+            margin: 0;
+            flex: 1 0 auto;
+            padding-right: 50px;
+        }
+    }
+
+    &__hero-title {
+        @include responsiveSize("font-size", 24px, 48px, 320px, 768px);
+        @include responsiveSize("line-height", 30px, 54px, 320px, 768px);
+        color: #fff;
+        @include font-pri-bold;
+    }
+
+    &__hero-subtitle {
+        @include responsiveSize("font-size", 16px, 24px, 320px, 768px);
+        @include responsiveSize("line-height", 20px, 30px, 320px, 768px);
+        color: #fff;
+        @include font-pri-reg;
+    }
+
+    &__hero-link {
+        color: #fff;
+        display: block;
+        font-size: 16px;
+        text-align: center;
+        border: 2px solid #fff;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-weight: 700;
+
+        @include tablet {
+            flex: 0 0 100px;
         }
     }
 }

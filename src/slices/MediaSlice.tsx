@@ -18,7 +18,7 @@ interface MediaSliceProps {
 const MediaItems = (data: MediaSliceProps) => {
 	const items = data.items.map((item, index) => {
 		return (
-			<div className="cms-media__list-item">
+			<div className="cms-media__list-item" key={`cms-media${item.media.url}${index}`}>
 				<img src={item.media.url} alt=""></img>
 			</div>)
 	});
