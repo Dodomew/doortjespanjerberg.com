@@ -1,12 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import ApiSearchResponse from "prismic-javascript/d.ts/ApiSearchResponse";
 import { ProjectItem } from "./ProjectItem/ProjectItem";
+import { SkeletonProjectItem } from "./ProjectItem/SkeletonProjectItem";
 import { ProjectItemProps } from "./ProjectItem/ProjectItem";
 import { prismicGetByType } from '../../ApiHelpers/prismicGetByType';
+import Fade from '../../hooks/useFadeAnimation';
+
+interface SkeletonProps {
+    show: boolean;
+}
+
+const SkeletonWrapper: FunctionComponent<SkeletonProps> = ({ show, children }) => {
+    if (!show) {
+        return (
+            <div className="skeleton-project-list">
+                {Array(6).fill(0)
+                    .map((item, index) => (
+                        <div className="skeleton-project-list__item" key={`skeleton-project-listitem${index}`}></div>
+                    ))}
+            </div>
+        )
+    }
+    else {
+        return (
+            <>
+                {children}
+            </>
+        )
+    }
+};
 
 const Projects = () => {
     const [listData, setListData] = useState<ApiSearchResponse>();
-    const queryOptions = { orderings: "[my.dialogue_page.date desc]" };
+    const queryOptions = { orderings: "[my.project_detail.date desc]" };
 
     useEffect(() => {
         if (!listData) {
@@ -27,16 +53,20 @@ const Projects = () => {
                 const itemSlug = item.slugs[0];
                 const itemData = item.data as ProjectItemProps;
                 return (
-                    <ProjectItem key={item.id} {...itemData} slug={itemSlug} index={index} />
+                    <Fade show={!!itemData} key={item.id}>
+                        <ProjectItem {...itemData} slug={itemSlug} index={index} />
+                    </Fade>
                 )
             }
         })
     }
 
     return (
-        <ul className="project-list">
-            {projectListItems}
-        </ul>
+        <SkeletonWrapper show={!!listData}>
+            <div className="project-list">
+                {projectListItems}
+            </div>
+        </SkeletonWrapper>
     )
 }
 

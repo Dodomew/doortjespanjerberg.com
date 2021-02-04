@@ -14,7 +14,6 @@ const ProjectDetail = () => {
 	const { uid } = useParams<ParamsProps>();
 
 	useEffect(() => {
-		console.log(projectDetailData);
 		if (!projectDetailData) {
 			fetchData(uid);
 		}

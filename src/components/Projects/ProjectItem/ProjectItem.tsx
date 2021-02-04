@@ -51,7 +51,7 @@ const ProjectItem = (data: ProjectItemProps) => {
     const ProjectListItemTitle = withObjectExistsRenderer(Title);
 
     return (
-        <li className="project-listitem">
+        <div className="project-listitem">
             <Link to={"projects/" + data.slug} className="project-listitem__wrapper">
                 <Media {...data.media} index={index} />
                 <div className="project-listitem__content">
@@ -64,7 +64,7 @@ const ProjectItem = (data: ProjectItemProps) => {
                     </span>
                 </div>
             </Link>
-        </li >
+        </div >
 
     )
 }
