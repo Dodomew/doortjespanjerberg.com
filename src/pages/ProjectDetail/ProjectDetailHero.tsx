@@ -39,35 +39,35 @@ const ProjectDetailHero = (data: ProjectDetailHeroProps) => {
     return (
         <div className="project-detail__hero">
             <div className="project-detail__hero-media">
-                <div className="test-wrapper">
-                    <div className="test">
-                        <div className="test-image-wrapper">
-                            <img className="test-image" src={media.url} ></img>
+                <div className="project-detail__hero-media-wrapper">
+                    <div className="project-detail__hero-media-item">
+                        <div className="project-detail__hero-image-wrapper">
+                            <img className="project-detail__hero-image" src={media.url} ></img>
                         </div>
                     </div>
-                    <div className="test">
-                        <div className="test-image-wrapper">
-                            <img className="test-image" src={media.url} ></img>
+                    <div className="project-detail__hero-media-item">
+                        <div className="project-detail__hero-image-wrapper">
+                            <img className="project-detail__hero-image" src={media.url} ></img>
                         </div>
                     </div>
-                    <div className="test">
-                        <div className="test-image-wrapper">
-                            <img className="test-image" src={media.url} ></img>
+                    <div className="project-detail__hero-media-item">
+                        <div className="project-detail__hero-image-wrapper">
+                            <img className="project-detail__hero-image" src={media.url} ></img>
                         </div>
                     </div>
-                    <div className="test">
-                        <div className="test-image-wrapper">
-                            <img className="test-image" src={media.url} ></img>
+                    <div className="project-detail__hero-media-item">
+                        <div className="project-detail__hero-image-wrapper">
+                            <img className="project-detail__hero-image" src={media.url} ></img>
                         </div>
                     </div>
                 </div>
-                <div className="project-detail__hero-content">
-                    <div className="project-detail__hero-text">
-                        <HeroTitle {...title} />
-                        <HeroSubtitle {...subtitle} />
-                    </div>
-                    <HeroLink {...link} />
+            </div>
+            <div className="project-detail__hero-content">
+                <div className="project-detail__hero-text">
+                    <HeroTitle {...title} />
+                    <HeroSubtitle {...subtitle} />
                 </div>
+                <HeroLink {...link} />
             </div>
         </div>
     )
