@@ -38,7 +38,29 @@ const ProjectDetailHero = (data: ProjectDetailHeroProps) => {
 
     return (
         <div className="project-detail__hero">
-            <div style={{ backgroundImage: `url(${media.url})` }} className="project-detail__hero-media">
+            <div className="project-detail__hero-media">
+                <div className="test-wrapper">
+                    <div className="test">
+                        <div className="test-image-wrapper">
+                            <img className="test-image" src={media.url} ></img>
+                        </div>
+                    </div>
+                    <div className="test">
+                        <div className="test-image-wrapper">
+                            <img className="test-image" src={media.url} ></img>
+                        </div>
+                    </div>
+                    <div className="test">
+                        <div className="test-image-wrapper">
+                            <img className="test-image" src={media.url} ></img>
+                        </div>
+                    </div>
+                    <div className="test">
+                        <div className="test-image-wrapper">
+                            <img className="test-image" src={media.url} ></img>
+                        </div>
+                    </div>
+                </div>
                 <div className="project-detail__hero-content">
                     <div className="project-detail__hero-text">
                         <HeroTitle {...title} />

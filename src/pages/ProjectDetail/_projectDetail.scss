@@ -1,3 +1,72 @@
+.test {
+    position: relative;
+
+    &:nth-child(1),
+    &:nth-child(4) {
+        background-color: var(--wave6);
+
+        .test-image-wrapper {
+            &::before {
+                background-color: var(--wave2);
+            }
+        }
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+        background-color: var(--wave2);
+
+        .test-image-wrapper {
+            &::before {
+                background-color: var(--wave6);
+            }
+        }
+    }
+}
+
+.test-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: calc(100% - 40px);
+        height: calc(100% - 40px);
+        z-index: 1;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        mix-blend-mode: color;
+    }
+}
+
+.test-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.test-wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: 37.5vw 37.5vw;
+    grid-template-rows: 37.5vw 37.5vw;
+    border-radius: 5px;
+    margin: 0 auto;
+
+    @include desktop-small {
+        flex: 0 0 480px;
+    }
+}
+
 .project-detail {
     &__hero {
         margin-bottom: 60px;
@@ -16,6 +85,7 @@
         position: relative;
         display: flex;
         align-items: flex-end;
+        flex-flow: row wrap;
 
         @include tablet {
             height: 480px;
@@ -24,12 +94,15 @@
         @include desktop-small {
             display: block;
             align-items: initial;
+
+            display: flex;
+            flex-flow: row nowrap;
         }
     }
 
     &__hero-content {
         width: 100%;
-        padding: 20px;
+        // padding: 20px;
         position: relative;
 
         @include tablet {
@@ -38,18 +111,18 @@
             align-items: center;
         }
 
-        @include desktop-small {
-            padding: 40px;
-            background: var(--color70-1);
-            position: absolute;
-            bottom: -50px;
-            width: auto;
-            left: 40px;
-            width: calc(100% - 80px);
-            border-radius: 5px;
-            box-shadow: 0px 0px 0px 5px var(--color70-2), 0px 0px 0px 10px var(--color70-3),
-                0px 0px 0px 15px var(--color70-4);
-        }
+        // @include desktop-small {
+        //     padding: 40px;
+        //     background: var(--color70-1);
+        //     position: absolute;
+        //     bottom: -50px;
+        //     width: auto;
+        //     left: 40px;
+        //     width: calc(100% - 80px);
+        //     border-radius: 5px;
+        //     box-shadow: 0px 0px 0px 5px var(--color70-2), 0px 0px 0px 10px var(--color70-3),
+        //         0px 0px 0px 15px var(--color70-4);
+        // }
     }
 
     &__hero-text {
