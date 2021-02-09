@@ -16,11 +16,11 @@
     }
 
     @include desktop-large {
-        grid-auto-rows: 400px;
+        grid-auto-rows: 397px;
     }
 
     &__item {
-        background-color: grey;
+        background-color: lightgrey;
         border-radius: 5px;
     }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import withObjectExistsRenderer from '../../components/HoC/withObjectExistsRenderer';
 import { PrismicTextProp } from '../../types/PrismicTextProp';
 import { PrismicImageProps } from "../../types/PrismicImageProps";
@@ -29,6 +29,34 @@ const Link = (data: PrismicLinkProps) => {
     )
 }
 
+export const HeroImagesGrid: FunctionComponent = React.memo(() => {
+    return (
+        <div className="project-detail__hero is-skeleton">
+            <div className="project-detail__hero-media">
+                <div className="project-detail__hero-media-wrapper">
+                    {Array(4).fill(0)
+                        .map((item, index) => (
+                            <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
+                                <div className="project-detail__hero-image-wrapper"></div>
+                            </div>
+
+                        ))}
+                </div>
+            </div>
+            <div className="project-detail__hero-content">
+                <div className="project-detail__hero-text">
+                    <h2 className="project-detail__hero-title"></h2>
+                    <h3 className="project-detail__hero-subtitle"></h3>
+                </div>
+                <a href="#" className="project-detail__hero-link"></a>
+            </div>
+        </div>
+
+    );
+});
+
+
+
 const ProjectDetailHero = (data: ProjectDetailHeroProps) => {
     const { title, subtitle, media, link } = { ...data };
 
@@ -36,30 +64,28 @@ const ProjectDetailHero = (data: ProjectDetailHeroProps) => {
     const HeroSubtitle = withObjectExistsRenderer(Subtitle);
     const HeroLink = withObjectExistsRenderer(Link);
 
+    const HeroImagesGrid: FunctionComponent = React.memo(() => {
+        return (
+            <>
+                {Array(4).fill(0)
+                    .map((item, index) => (
+                        <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
+                            <div className="project-detail__hero-image-wrapper">
+                                {media.url && (
+                                    <img className="project-detail__hero-image" src={media.url} ></img>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+            </>
+        );
+    });
+
     return (
         <div className="project-detail__hero">
             <div className="project-detail__hero-media">
                 <div className="project-detail__hero-media-wrapper">
-                    <div className="project-detail__hero-media-item">
-                        <div className="project-detail__hero-image-wrapper">
-                            <img className="project-detail__hero-image" src={media.url} ></img>
-                        </div>
-                    </div>
-                    <div className="project-detail__hero-media-item">
-                        <div className="project-detail__hero-image-wrapper">
-                            <img className="project-detail__hero-image" src={media.url} ></img>
-                        </div>
-                    </div>
-                    <div className="project-detail__hero-media-item">
-                        <div className="project-detail__hero-image-wrapper">
-                            <img className="project-detail__hero-image" src={media.url} ></img>
-                        </div>
-                    </div>
-                    <div className="project-detail__hero-media-item">
-                        <div className="project-detail__hero-image-wrapper">
-                            <img className="project-detail__hero-image" src={media.url} ></img>
-                        </div>
-                    </div>
+                    <HeroImagesGrid />
                 </div>
             </div>
             <div className="project-detail__hero-content">
