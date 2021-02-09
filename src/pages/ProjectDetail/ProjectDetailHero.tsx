@@ -11,6 +11,10 @@ interface ProjectDetailHeroProps {
     title: PrismicTextProp
 }
 
+type heroImageGrid = {
+    data?: PrismicImageProps;
+}
+
 const Title = (data: PrismicTextProp) => {
     return (
         <h2 className="project-detail__hero-title">{data[0].text}</h2>
@@ -29,18 +33,33 @@ const Link = (data: PrismicLinkProps) => {
     )
 }
 
-export const HeroImagesGrid: FunctionComponent = React.memo(() => {
+export const HeroImagesGrid = (media: heroImageGrid) => {
+    let heroImageGrid: JSX.Element[];
+
+    if (media.data == null) {
+        heroImageGrid = Array(4).fill(0)
+            .map((item, index) => (
+                <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
+                    <div className="project-detail__hero-image-wrapper"></div>
+                </div>
+
+            ))
+    }
+    else {
+        heroImageGrid = Array(4).fill(0)
+            .map((item, index) => (
+                <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
+                    <div className="project-detail__hero-image-wrapper">
+                        <img className="project-detail__hero-image" src={media.data!.url} ></img>
+                    </div>
+                </div>
+            ))
+    }
     return (
         <div className="project-detail__hero is-skeleton">
             <div className="project-detail__hero-media">
                 <div className="project-detail__hero-media-wrapper">
-                    {Array(4).fill(0)
-                        .map((item, index) => (
-                            <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
-                                <div className="project-detail__hero-image-wrapper"></div>
-                            </div>
-
-                        ))}
+                    {heroImageGrid}
                 </div>
             </div>
             <div className="project-detail__hero-content">
@@ -51,9 +70,8 @@ export const HeroImagesGrid: FunctionComponent = React.memo(() => {
                 <a href="#" className="project-detail__hero-link"></a>
             </div>
         </div>
-
     );
-});
+};
 
 
 
@@ -64,28 +82,28 @@ const ProjectDetailHero = (data: ProjectDetailHeroProps) => {
     const HeroSubtitle = withObjectExistsRenderer(Subtitle);
     const HeroLink = withObjectExistsRenderer(Link);
 
-    const HeroImagesGrid: FunctionComponent = React.memo(() => {
-        return (
-            <>
-                {Array(4).fill(0)
-                    .map((item, index) => (
-                        <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
-                            <div className="project-detail__hero-image-wrapper">
-                                {media.url && (
-                                    <img className="project-detail__hero-image" src={media.url} ></img>
-                                )}
-                            </div>
-                        </div>
-                    ))}
-            </>
-        );
-    });
+    // const HeroImagesGrid: FunctionComponent = React.memo(() => {
+    //     return (
+    //         <>
+    //             {Array(4).fill(0)
+    //                 .map((item, index) => (
+    //                     <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
+    //                         <div className="project-detail__hero-image-wrapper">
+    //                             {media.url && (
+    //                                 <img className="project-detail__hero-image" src={media.url} ></img>
+    //                             )}
+    //                         </div>
+    //                     </div>
+    //                 ))}
+    //         </>
+    //     );
+    // });
 
     return (
         <div className="project-detail__hero">
             <div className="project-detail__hero-media">
                 <div className="project-detail__hero-media-wrapper">
-                    <HeroImagesGrid />
+                    <HeroImagesGrid data={media} />
                 </div>
             </div>
             <div className="project-detail__hero-content">
