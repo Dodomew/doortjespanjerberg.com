@@ -17,6 +17,7 @@
     border: 3px solid var(--color70-1);
     border-radius: 5px;
     position: relative;
+    transition: transform 0.2s;
 
     &::before {
         content: "";
@@ -39,9 +40,15 @@
     }
 
     &:hover {
+        transform: scale(1.05);
+
         &::before {
             opacity: 1;
         }
+    }
+
+    &:active {
+        transform: scale(0.975);
     }
 
     &__wrapper {

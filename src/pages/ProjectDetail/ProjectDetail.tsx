@@ -21,7 +21,7 @@ const ProjectDetail = () => {
 	}, [projectDetailData])
 
 	async function fetchData(uid: string) {
-		const doc = await client.getByUID('project_detail', uid);
+		const doc = await client.getByUID('project_detail', uid, {});
 		setProjectDetailData(doc);
 	}
 
