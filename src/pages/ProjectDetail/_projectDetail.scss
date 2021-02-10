@@ -2,10 +2,6 @@
     &__hero {
         margin-bottom: 30px;
 
-        @include desktop-small {
-            margin-bottom: 60px;
-        }
-
         @include desktop-large {
             display: flex;
             flex-flow: row nowrap;

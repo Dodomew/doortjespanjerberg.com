@@ -1,40 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
-import { Document as PrismicDocument } from "prismic-javascript/d.ts/documents"; //There is a React Document and a Prismic Document = namespace clash
-import { prismicGetSingle } from "../../ApiHelpers/prismicGetSingle";
-
-interface HeaderProps {
-    title: string,
-    subtitle: string
-}
 
 const Header = () => {
-    const [header, setHeader] = useState<PrismicDocument>();
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        const prismicData = await prismicGetSingle({ id: "header", options: {} });
-        setHeader(prismicData);
-    };
-
-    const headerTitle = header?.data.title[0].text ?? "Loading...";
-    const headerSubtitle = header?.data.subtitle[0].text ?? "Loading...";
-
     return (
         <div className="header container">
             <div className="header__content">
                 <Link to={'/'} className="header__link">
-                    <h2 className="header__byline" data-text={headerTitle}>
-                        <span className="header__byline--stroke" data-text={headerTitle}>
-                            {headerTitle}
+                    <h2 className="header__byline" data-text={"Doortje Spanjerberg"}>
+                        <span className="header__byline--stroke" data-text={"Doortje Spanjerberg"}>
+                            Doortje Spanjerberg
                         </span>
-                        {headerTitle}
+                        Doortje Spanjerberg
                     </h2>
-                    <h3 className="header__title" data-text={headerSubtitle}>
-                        {headerSubtitle}
+                    <h3 className="header__title" data-text={"Frontend Developer"}>
+                        Frontend Developer
                     </h3>
                 </Link>
             </div>
@@ -54,5 +33,4 @@ const Header = () => {
     )
 }
 
-export type { HeaderProps };
 export { Header };

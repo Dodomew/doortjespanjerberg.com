@@ -3,6 +3,6 @@ export type PrismicImageProps = {
         width: number;
         height: number;
     };
-    alt: null;
+    alt: string;
     url: string;
 };

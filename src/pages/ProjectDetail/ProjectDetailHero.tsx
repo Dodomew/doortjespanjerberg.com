@@ -34,41 +34,40 @@ const Link = (data: PrismicLinkProps) => {
 }
 
 export const HeroImagesGrid = (media: heroImageGrid) => {
-    let heroImageGrid: JSX.Element[];
-
-    if (media.data == null) {
-        heroImageGrid = Array(4).fill(0)
-            .map((item, index) => (
-                <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
-                    <div className="project-detail__hero-image-wrapper"></div>
+    const heroImageGrid = Array(4).fill(0)
+        .map((item, index) => (
+            <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
+                <div className="project-detail__hero-image-wrapper">
+                    {
+                        media.data && media.data.url && (
+                            <img className="project-detail__hero-image"
+                                src={media.data.url}
+                                alt={media.data.alt ? media.data.alt : ""}>
+                            </img>
+                        )
+                    }
                 </div>
+            </div>
+        ))
 
-            ))
-    }
-    else {
-        heroImageGrid = Array(4).fill(0)
-            .map((item, index) => (
-                <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
-                    <div className="project-detail__hero-image-wrapper">
-                        <img className="project-detail__hero-image" src={media.data!.url} ></img>
-                    </div>
-                </div>
-            ))
-    }
     return (
-        <div className="project-detail__hero is-skeleton">
+        <div className={`project-detail__hero ${media.data == null ? 'is-skeleton' : ''}`}>
             <div className="project-detail__hero-media">
                 <div className="project-detail__hero-media-wrapper">
                     {heroImageGrid}
                 </div>
             </div>
-            <div className="project-detail__hero-content">
-                <div className="project-detail__hero-text">
-                    <h2 className="project-detail__hero-title"></h2>
-                    <h3 className="project-detail__hero-subtitle"></h3>
-                </div>
-                <a href="#" className="project-detail__hero-link"></a>
-            </div>
+            {
+                !media.data && (
+                    <div className="project-detail__hero-content">
+                        <div className="project-detail__hero-text">
+                            <h2 className="project-detail__hero-title"></h2>
+                            <h3 className="project-detail__hero-subtitle"></h3>
+                        </div>
+                        <a href="#" className="project-detail__hero-link"></a>
+                    </div>
+                )
+            }
         </div>
     );
 };
@@ -82,30 +81,9 @@ const ProjectDetailHero = (data: ProjectDetailHeroProps) => {
     const HeroSubtitle = withObjectExistsRenderer(Subtitle);
     const HeroLink = withObjectExistsRenderer(Link);
 
-    // const HeroImagesGrid: FunctionComponent = React.memo(() => {
-    //     return (
-    //         <>
-    //             {Array(4).fill(0)
-    //                 .map((item, index) => (
-    //                     <div className="project-detail__hero-media-item" key={`project-detail__hero-media-item${index}`}>
-    //                         <div className="project-detail__hero-image-wrapper">
-    //                             {media.url && (
-    //                                 <img className="project-detail__hero-image" src={media.url} ></img>
-    //                             )}
-    //                         </div>
-    //                     </div>
-    //                 ))}
-    //         </>
-    //     );
-    // });
-
     return (
         <div className="project-detail__hero">
-            <div className="project-detail__hero-media">
-                <div className="project-detail__hero-media-wrapper">
-                    <HeroImagesGrid data={media} />
-                </div>
-            </div>
+            <HeroImagesGrid data={media} />
             <div className="project-detail__hero-content">
                 <div className="project-detail__hero-text">
                     <HeroTitle {...title} />
