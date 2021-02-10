@@ -22,7 +22,7 @@ const Socials = (data: ContactPageProps) => {
         return (
             <li className="socials-item">
                 <a href={item.social_link.url} target={item.social_link.target} className="socials-item__wrapper">
-                    <img src={item.social_icon.url} alt="" className="socials-item__media" />
+                    <img src={item.social_icon.url} alt={item.social_icon.alt} className="socials-item__media" />
                 </a>
             </li>
         )

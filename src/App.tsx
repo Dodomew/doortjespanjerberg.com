@@ -12,6 +12,7 @@ import { Header } from "./components/Header/Header";
 import Homepage from "./pages/Homepage/Homepage";
 import ProjectDetail from "./pages/ProjectDetail/ProjectDetail";
 import ContactPage from "./pages/Contact/ContactPage";
+import ScrollToTop from './HoC/ScrollToTop';
 
 // https://ui.dev/react-router-v4-animated-transitions/
 
@@ -30,16 +31,20 @@ const App = () => {
 									classNames="fade"
 									unmountOnExit
 									timeout={166}>
-									<div className="anim">
-										<Switch location={location}>
-											<Route exact path="/">
-												<Redirect to="/projects" />
-											</Route>
-											<Route exact path="/projects" component={Homepage} />
-											<Route exact path="/projects/:uid" component={ProjectDetail} />
-											<Route exact path="/contact" component={ContactPage} />
-										</Switch>
-									</div>
+
+									<ScrollToTop>
+										<div className="anim">
+											<Switch location={location}>
+												<Route exact path="/">
+													<Redirect to="/projects" />
+												</Route>
+												<Route exact path="/projects" component={Homepage} />
+												<Route exact path="/projects/:uid" component={ProjectDetail} />
+												<Route exact path="/contact" component={ContactPage} />
+											</Switch>
+										</div>
+									</ScrollToTop>
+
 								</CSSTransition>
 							</SwitchTransition>
 						)}
