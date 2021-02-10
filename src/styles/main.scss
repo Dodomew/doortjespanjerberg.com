@@ -2,7 +2,6 @@
 @import "settings/typography";
 @import "settings/mixins";
 @import "settings/variables";
-// @import "settings/icon";
 @import "settings/colors";
 
 @import "animations/fade";
@@ -10,11 +9,7 @@
 
 @import "components/main";
 @import "components/project-list";
-// @import "components/page";
 @import "components/header";
-// @import "components/footer";
-// @import "components/hero";
-// @import "components/list";
-// @import "components/media";
 @import "components/cms-content";
+@import "../pages/Contact/socials";
 @import "../pages/ProjectDetail/projectDetail";

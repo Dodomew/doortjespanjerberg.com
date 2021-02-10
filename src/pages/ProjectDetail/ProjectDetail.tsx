@@ -5,7 +5,6 @@ import { PrismicDocument } from "../../types/PrismicDocumentType";
 import { SliceController } from "../../slices/SliceController";
 import { ProjectDetailHero } from "./ProjectDetailHero";
 import { HeroImagesGrid } from "./ProjectDetailHero";
-import { PrismicImageProps } from "../../types/PrismicImageProps";
 
 interface ParamsProps {
 	uid: string;

@@ -1,27 +1,27 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import withObjectExistsRenderer from '../../components/HoC/withObjectExistsRenderer';
-import { PrismicTextProp } from '../../types/PrismicTextProp';
+import { PrismicTextProps } from '../../types/PrismicTextProps';
 import { PrismicImageProps } from "../../types/PrismicImageProps";
 import { PrismicLinkProps } from "../../types/PrismicLinkProps";
 
 interface ProjectDetailHeroProps {
     link: PrismicLinkProps
     media: PrismicImageProps;
-    subtitle: PrismicTextProp
-    title: PrismicTextProp
+    subtitle: PrismicTextProps
+    title: PrismicTextProps
 }
 
 type heroImageGrid = {
     data?: PrismicImageProps;
 }
 
-const Title = (data: PrismicTextProp) => {
+const Title = (data: PrismicTextProps) => {
     return (
         <h2 className="project-detail__hero-title">{data[0].text}</h2>
     )
 }
 
-const Subtitle = (data: PrismicTextProp) => {
+const Subtitle = (data: PrismicTextProps) => {
     return (
         <h3 className="project-detail__hero-subtitle">{data[0].text}</h3>
     )

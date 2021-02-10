@@ -4,7 +4,7 @@ import Title from "./Atoms/Title";
 import Subtitle from "./Atoms/Subtitle";
 import Media from "./Atoms/Media";
 import { Link } from 'react-router-dom';
-import { PrismicTextProp } from "../../../types/PrismicTextProp";
+import { PrismicTextProps } from "../../../types/PrismicTextProps";
 
 /*
     Prismic API sends a normal text input as follows:
@@ -36,8 +36,8 @@ interface ProjectItemProps {
             height: number
         }
     },
-    title: PrismicTextProp,
-    subtitle: PrismicTextProp,
+    title: PrismicTextProps,
+    subtitle: PrismicTextProps,
     index: number
 }
 

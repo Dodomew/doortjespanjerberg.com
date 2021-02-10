@@ -1,9 +1,9 @@
 import React from 'react';
-import { PrismicTextProp } from "../../../types/PrismicTextProp";
+import { PrismicTextProps } from "../../../types/PrismicTextProps";
 
 interface ContentSliceProps {
-    items: [PrismicTextProp];
-    primary: PrismicTextProp;
+    items: [PrismicTextProps];
+    primary: PrismicTextProps;
 }
 
 const ContentSlice = (data: ContentSliceProps) => {

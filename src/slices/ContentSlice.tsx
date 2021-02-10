@@ -1,15 +1,15 @@
 import React from 'react';
-import { PrismicTextProp } from "../types/PrismicTextProp";
+import { PrismicTextProps } from "../types/PrismicTextProps";
 
 interface ContentSliceProps {
     slice_type: string;
     items: [
         {
-            text: PrismicTextProp;
+            text: PrismicTextProps;
         }
     ];
     primary: {
-        title: PrismicTextProp;
+        title: PrismicTextProps;
     };
 }
 
