@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React, { Fragment } from 'react'
 import {
 	BrowserRouter,
@@ -31,7 +32,6 @@ const App = () => {
 									classNames="fade"
 									unmountOnExit
 									timeout={166}>
-
 									<ScrollToTop>
 										<div className="anim">
 											<Switch location={location}>
@@ -44,7 +44,6 @@ const App = () => {
 											</Switch>
 										</div>
 									</ScrollToTop>
-
 								</CSSTransition>
 							</SwitchTransition>
 						)}
@@ -56,4 +55,4 @@ const App = () => {
 	)
 }
 
-export default App
+export default App;

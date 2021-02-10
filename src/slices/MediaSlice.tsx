@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React from "react";
 
 interface MediaSliceProps {
@@ -30,10 +31,6 @@ const MediaItems = (data: MediaSliceProps) => {
 }
 
 const MediaSlice = (data: MediaSliceProps) => {
-	const { url, dimensions } = {
-		...data.items[0].media,
-	};
-
 	return (
 		<div className="cms-media">
 			<MediaItems {...data} />

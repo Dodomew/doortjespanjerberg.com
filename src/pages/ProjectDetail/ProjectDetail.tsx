@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { client } from "../../prismic-configuration";
@@ -14,16 +15,16 @@ const ProjectDetail = () => {
 	const [projectDetailData, setProjectDetailData] = useState<PrismicDocument>();
 	const { uid } = useParams<ParamsProps>();
 
-	useEffect(() => {
-		if (!projectDetailData) {
-			fetchData(uid);
-		}
-	}, [projectDetailData])
-
 	async function fetchData(uid: string) {
 		const doc = await client.getByUID('project_detail', uid, {});
 		setProjectDetailData(doc);
 	}
+
+	useEffect(() => {
+		if (!projectDetailData) {
+			fetchData(uid);
+		}
+	}, [projectDetailData, uid])
 
 	return (
 		<div className="project-detail">

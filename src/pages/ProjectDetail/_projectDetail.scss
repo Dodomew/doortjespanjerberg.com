@@ -116,6 +116,7 @@
             color: var(--bg-color);
             background-color: var(--primary-font-color);
             transform: scale(1.05);
+            cursor: pointer;
         }
 
         &:active {

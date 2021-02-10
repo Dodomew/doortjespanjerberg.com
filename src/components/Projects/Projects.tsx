@@ -1,7 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import ApiSearchResponse from "prismic-javascript/d.ts/ApiSearchResponse";
 import { ProjectItem } from "./ProjectItem/ProjectItem";
-import { SkeletonProjectItem } from "./ProjectItem/SkeletonProjectItem";
 import { ProjectItemProps } from "./ProjectItem/ProjectItem";
 import { prismicGetByType } from '../../ApiHelpers/prismicGetByType';
 import Fade from '../../hooks/useFadeAnimation';
@@ -32,18 +32,20 @@ const SkeletonWrapper: FunctionComponent<SkeletonProps> = ({ show, children }) =
 
 const Projects = () => {
     const [listData, setListData] = useState<ApiSearchResponse>();
-    const queryOptions = { orderings: "[my.project_detail.date desc]" };
+
 
     useEffect(() => {
         if (!listData) {
+
+            const queryOptions = { orderings: "[my.project_detail.date desc]" };
+            const fetchData = async () => {
+                const prismicData = await prismicGetByType({ types: new Set(["project_detail"]), options: queryOptions });
+                setListData(prismicData);
+            };
+
             fetchData();
         }
     }, [listData]);
-
-    const fetchData = async () => {
-        const prismicData = await prismicGetByType({ types: new Set(["project_detail"]), options: queryOptions });
-        setListData(prismicData);
-    };
 
     let projectListItems = null;
 
@@ -58,6 +60,7 @@ const Projects = () => {
                     </Fade>
                 )
             }
+            return null;
         })
     }
 

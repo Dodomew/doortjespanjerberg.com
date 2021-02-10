@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React from "react";
 import { MediaSlice, MediaSliceProps } from "./MediaSlice";
 import { ContentSlice, ContentSliceProps } from "./ContentSlice";
@@ -28,7 +29,7 @@ const SliceController = (data: SliceControllerProps) => {
                         <ContentSlice key={contentSliceData.slice_type + index} {...contentSliceData} />
                     );
                 default:
-                    break;
+                    return null;
             }
         })
     }

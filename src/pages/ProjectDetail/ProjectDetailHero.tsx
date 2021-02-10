@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React from 'react';
 import withObjectExistsRenderer from '../../components/HoC/withObjectExistsRenderer';
 import { PrismicTextProps } from '../../types/PrismicTextProps';
@@ -61,10 +62,10 @@ export const HeroImagesGrid = (media: heroImageGrid) => {
                 !media.data && (
                     <div className="project-detail__hero-content">
                         <div className="project-detail__hero-text">
-                            <h2 className="project-detail__hero-title"></h2>
-                            <h3 className="project-detail__hero-subtitle"></h3>
+                            <div className="project-detail__hero-title"></div>
+                            <div className="project-detail__hero-subtitle"></div>
                         </div>
-                        <a href="#" className="project-detail__hero-link"></a>
+                        <div className="project-detail__hero-link"></div>
                     </div>
                 )
             }

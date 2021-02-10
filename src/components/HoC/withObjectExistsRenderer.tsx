@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React from 'react';
 
 /*
@@ -10,11 +11,10 @@ import React from 'react';
     Usage is primarily for Titles and Subtitles
 */
 
-const withObjectExistsRenderer = <T extends object>( WrappedComponent: React.FC<T> ): React.FC<T> => 
-    ( props : T ) => 
-    {
-        if(Object.keys(props).length !== 0) {
-            return <WrappedComponent {...props as T } />;
+const withObjectExistsRenderer = <T extends object>(WrappedComponent: React.FC<T>): React.FC<T> =>
+    (props: T) => {
+        if (Object.keys(props).length !== 0) {
+            return <WrappedComponent {...props as T} />;
         }
         else {
             return null;
