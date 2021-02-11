@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React, { useEffect, useState } from 'react';
+import { RichText } from 'prismic-reactjs';
 import { prismicGetSingle } from '../../ApiHelpers/prismicGetSingle';
 import { PrismicDocument } from '../../types/PrismicDocumentType';
 import { PrismicImageProps } from '../../types/PrismicImageProps';
@@ -22,7 +23,7 @@ interface ContactPageProps {
 const Socials = (data: ContactPageProps) => {
     const socialsList = data.social.map((item, index) => {
         return (
-            <li className="socials-item" key={item.social_title[0].text + index}>
+            <li className="socials-item" key={item.social_title[0].text! + index}>
                 <a href={item.social_link.url} target={item.social_link.target} className="socials-item__wrapper">
                     <img src={item.social_icon.url} alt={item.social_icon.alt} className="socials-item__media" />
                 </a>
@@ -36,9 +37,7 @@ const Socials = (data: ContactPageProps) => {
 const Paragraphs = (data: ContactPageProps) => {
     const paragraphs = data.text.map((item, index) => {
         return (
-            <p key={`contactPage_paragraph_${index}`}>
-                {item.text}
-            </p>
+            <RichText render={[item]} key={`contactPageParagraph${index}`} />
         );
     });
 

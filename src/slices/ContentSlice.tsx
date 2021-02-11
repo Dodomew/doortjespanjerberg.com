@@ -1,14 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React from 'react';
+import { RichText } from 'prismic-reactjs';
 import { PrismicTextProps } from "../types/PrismicTextProps";
 
 interface ContentSliceProps {
     slice_type: string;
-    items: [
-        {
-            text: PrismicTextProps;
-        }
-    ];
+    items: PrismicTextProps;
     primary: {
         title: PrismicTextProps;
     };
@@ -22,9 +19,7 @@ const ContentSlice = (data: ContentSliceProps) => {
             {
                 data.items.map((item, index) => {
                     return (
-                        <p key={title + "_paragraph_" + index}>
-                            {item.text[0].text}
-                        </p>
+                        <RichText render={[item]} key={`title + "_paragraph_" + ${index}`} />
                     )
                 })
             }

@@ -1,1 +1,3 @@
-export type PrismicTextProps = [{ text: string }];
+import { RichTextBlock } from "prismic-reactjs";
+
+export type PrismicTextProps = [RichTextBlock];
