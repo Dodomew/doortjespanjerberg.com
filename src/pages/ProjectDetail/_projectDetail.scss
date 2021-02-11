@@ -107,6 +107,7 @@
         text-transform: uppercase;
         font-weight: 700;
         transition: color 0.2s, background-color 0.2s, transform 0.2s;
+        padding: 10px;
 
         .is-skeleton & {
             pointer-events: none;

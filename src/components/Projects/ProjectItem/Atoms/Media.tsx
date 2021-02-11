@@ -18,7 +18,7 @@ const Media = (data: MediaProps) => {
                 <div
                     className={'project-listitem__bg bg-' + data.index}
                 >
-                    <div className={'project-listitem__inner project-listitem__bg bg-' + data.index}></div>
+                    <div className={`project-listitem__inner project-listitem__bg bg-${data.index > 3 ? data.index % 4 : data.index}`}></div>
                 </div>
             </div>
             <div

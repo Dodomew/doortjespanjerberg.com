@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { client } from "../../prismic-configuration";
 import { PrismicDocument } from "../../types/PrismicDocumentType";
-import { SliceController } from "../../slices/SliceController";
 import { ProjectDetailHero } from "./ProjectDetailHero";
 import { HeroImagesGrid } from "./ProjectDetailHero";
+import { RichText } from "prismic-reactjs";
+import { htmlSerializer } from "../../ApiHelpers/HtmlSerializer";
 
 interface ParamsProps {
 	uid: string;
@@ -32,7 +33,7 @@ const ProjectDetail = () => {
 				<>
 					<ProjectDetailHero {...projectDetailData.data} />
 					<div className="cms-content">
-						{SliceController({ ...projectDetailData.data })}
+						<RichText render={projectDetailData.data.text} htmlSerializer={htmlSerializer} />
 					</div>
 				</>
 

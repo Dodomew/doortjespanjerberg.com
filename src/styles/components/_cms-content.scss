@@ -3,69 +3,75 @@
     flex-flow: column nowrap;
     margin: 0 auto;
     color: var(--primary-font-color);
+    max-width: 640px;
 
     strong {
         font-weight: bold;
     }
 
-    h4 {
+    em {
+        font-style: italic;
+    }
+
+    .cms-h4 {
         font-size: 24px;
         margin-bottom: 16px;
         @include font-pri-bold;
-    }
 
-    p {
-        font-size: 16px;
-        line-height: 24px;
-        margin-bottom: 24px;
-    }
+        & + .cms-p {
+            margin-top: 0;
+        }
 
-    ul {
-    }
-
-    li {
-        padding-left: 16px;
-        margin-bottom: 8px;
-        position: relative;
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: 7px;
-            left: 0;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: red;
+        & + .cms-ul {
+            margin-top: 16px;
         }
     }
 
-    img {
-        width: 100%;
-        border-radius: 5px;
-    }
-}
+    .cms-p {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0 auto 36px;
 
-.cms-paragraph {
-    max-width: 640px;
-    margin: 0 auto;
+        & + .cms-p {
+            margin: 0;
+        }
+
+        & + .cms-media {
+            margin-top: 24px;
+        }
+    }
+
+    .cms-ul {
+        margin: 24px auto;
+
+        li {
+            padding-left: 16px;
+            margin-bottom: 8px;
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 7px;
+                left: 0;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: var(--color70-2);
+            }
+        }
+    }
 }
 
 .cms-media {
-    max-width: 780px;
+    border-radius: 5px;
     margin: 24px auto;
 
-    &__list {
-        display: flex;
-        flex-flow: row wrap;
+    @include tablet {
+        margin: 48px auto;
     }
 
-    &__list-item {
-        margin-bottom: 16px;
-
-        @include tablet {
-            flex: 1 0 calc(50% - 24px);
-            margin: 0 12px 24px;
-        }
+    @include desktop-small {
+        margin: 60px auto;
     }
 }
