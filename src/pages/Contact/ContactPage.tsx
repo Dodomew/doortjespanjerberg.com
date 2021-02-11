@@ -33,6 +33,18 @@ const Socials = (data: ContactPageProps) => {
     return <ul className="socials">{socialsList}</ul>
 }
 
+const Paragraphs = (data: ContactPageProps) => {
+    const paragraphs = data.text.map((item, index) => {
+        return (
+            <p key={`contactPage_paragraph_${index}`}>
+                {item.text}
+            </p>
+        );
+    });
+
+    return <>{paragraphs}</>;
+}
+
 const ContactPage = () => {
     const [contactPageData, setContactPageData] = useState<ContactPageProps>();
 
@@ -54,7 +66,7 @@ const ContactPage = () => {
             <div className="cms-content">
                 <div className="cms-paragraph">
                     <h4>{contactPageData.title[0].text}</h4>
-                    {contactPageData.text[0].text}
+                    <Paragraphs {...contactPageData} />
                 </div>
             </div>
             <Socials {...contactPageData} />
