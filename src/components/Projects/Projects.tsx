@@ -37,7 +37,7 @@ const Projects = () => {
     useEffect(() => {
         if (!listData) {
 
-            const queryOptions = { orderings: "[my.project_detail.date desc]" };
+            const queryOptions = { orderings: "[document.last_publication_date desc]" };
             const fetchData = async () => {
                 const prismicData = await prismicGetByType({ types: new Set(["project_detail"]), options: queryOptions });
                 setListData(prismicData);

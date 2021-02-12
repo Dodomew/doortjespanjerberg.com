@@ -64,7 +64,7 @@ const ContactPage = () => {
         <div className="contact">
             <div className="cms-content">
                 <div className="cms-paragraph">
-                    <h4>{contactPageData.title[0].text}</h4>
+                    <h4 className="cms-h4">{contactPageData.title[0].text}</h4>
                     <Paragraphs {...contactPageData} />
                 </div>
             </div>
