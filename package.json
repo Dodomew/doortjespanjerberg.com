@@ -1,6 +1,6 @@
 {
-  "name": "reactjs-starter",
-  "version": "0.2.0",
+  "name": "Doortje Spanjerberg",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.11.0",
@@ -29,9 +29,11 @@
     "@typescript-eslint/parser": "^4.11.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "engines": {
     "node": ">=4.8.1",
